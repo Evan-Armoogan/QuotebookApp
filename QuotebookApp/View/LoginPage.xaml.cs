@@ -2,8 +2,9 @@ namespace QuotebookApp.View;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+	public LoginPage(LoginViewModel viewModel)
 	{
 		InitializeComponent();
+		BindingContext = viewModel;
 	}
 }

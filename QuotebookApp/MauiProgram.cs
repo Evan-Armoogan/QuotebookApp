@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using QuotebookApp.Services;
+using QuotebookApp.View;
 
 namespace QuotebookApp;
 
@@ -18,6 +20,14 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+
+		builder.Services.AddSingleton<UserService>();
+
+		builder.Services.AddSingleton<LoginViewModel>();
+
+		builder.Services.AddSingleton<LoginPage>();
+
+
 
 		return builder.Build();
 	}

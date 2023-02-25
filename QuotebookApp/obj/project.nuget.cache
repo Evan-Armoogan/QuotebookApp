@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "P4tDLnSCL7nhJ1qLsjwuXFtjbwSLRSgGmJEOpd4Byu+uvxsDbfBoBL0kMX5wOV7eYvXd5uE2ogyxbIcdh6V3kA==",
+  "dgSpecHash": "PAIVpwuYL6WVYYnT/+ztx81iy9jm70IG15TEdVXl8rQnIaZrWGJXm/WxdGnsog8kZPeK5AtbxJNfvxl6gT7pbg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Admin\\source\\repos\\cs\\QuotebookApp\\QuotebookApp\\QuotebookApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\communitytoolkit.mvvm\\8.1.0\\communitytoolkit.mvvm.8.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",

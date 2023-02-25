@@ -6,6 +6,9 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
+		GlobalData.InitializeApiParameters();
+		GlobalData.IniitalizeRetryStatusCodes();
+
 		MainPage = new AppShell();
 	}
 }
