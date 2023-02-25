@@ -101,6 +101,9 @@ StyleCopReport.xml
 # DLL Files
 *.dll
 
+# XML files
+*.xml
+
 # Chutzpah Test files
 _Chutzpah*
 
