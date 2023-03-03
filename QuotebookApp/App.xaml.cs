@@ -1,4 +1,6 @@
-﻿namespace QuotebookApp;
+﻿using QuotebookApp.Services;
+
+namespace QuotebookApp;
 
 public partial class App : Application
 {
@@ -8,6 +10,7 @@ public partial class App : Application
 
 		GlobalData.InitializeApiParameters();
 		GlobalData.IniitalizeRetryStatusCodes();
+		BaseService.InitializeClient();
 
 		MainPage = new AppShell();
 	}

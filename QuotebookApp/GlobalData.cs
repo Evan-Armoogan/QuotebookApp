@@ -15,6 +15,8 @@ namespace QuotebookApp
         public static string UserSheetName { get; private set; }
         public static string QuoteSheetName { get; private set; }
         public static List<int> RetryStatusCodes { get; private set; }
+        public static User CurrentUser { get; set; }
+
 
 
         public static bool IsLoggedIn { get; set; } = false;
