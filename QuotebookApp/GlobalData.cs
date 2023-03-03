@@ -12,8 +12,6 @@ namespace QuotebookApp
         public static string BaseURL { get; } = "https://sheets.googleapis.com/v4/spreadsheets";
         public static string APIKey { get; private set; }
         public static string SheetID { get; private set; }
-        public static string UserSheetName { get; private set; }
-        public static string QuoteSheetName { get; private set; }
         public static List<int> RetryStatusCodes { get; private set; }
         public static User CurrentUser { get; set; }
 
@@ -35,18 +33,6 @@ namespace QuotebookApp
             SheetID = await reader_url.ReadToEndAsync();
             reader_url.Close();
             stream_url?.Close();
-
-            using var stream_sheet_user = await FileSystem.OpenAppPackageFileAsync("Secrets/UserSheetName.secret");
-            using var reader_sheet_user = new StreamReader(stream_sheet_user);
-            UserSheetName = await reader_sheet_user.ReadToEndAsync();
-            reader_sheet_user.Close();
-            stream_sheet_user?.Close();
-
-            using var stream_sheet_quote = await FileSystem.OpenAppPackageFileAsync("Secrets/QuoteSheetName.secret");
-            using var reader_sheet_quote = new StreamReader(stream_sheet_quote);
-            QuoteSheetName = await reader_sheet_quote.ReadToEndAsync();
-            reader_sheet_quote.Close();
-            stream_sheet_quote?.Close();
         }
 
         public static void IniitalizeRetryStatusCodes()

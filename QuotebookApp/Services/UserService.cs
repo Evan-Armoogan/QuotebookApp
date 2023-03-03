@@ -20,7 +20,7 @@ public class UserService
         if (userList?.Count > 0)
             return userList;
 
-        string range = GlobalData.UserSheetName + "!A2:C";
+        string range = "Users!A2:C";
 
         SheetData data = await service.GetResponse(range);
 
