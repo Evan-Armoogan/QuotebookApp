@@ -49,6 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Raw\APIKey.txt" />
+	  <None Remove="Resources\Raw\Secrets\QuoteSheetName.txt" />
+	  <None Remove="Resources\Raw\SheetID.txt" />
+	  <None Remove="Resources\Raw\UserSheetName.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 

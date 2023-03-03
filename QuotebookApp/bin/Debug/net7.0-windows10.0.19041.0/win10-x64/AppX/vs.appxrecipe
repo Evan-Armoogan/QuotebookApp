@@ -29,25 +29,25 @@
     <AppXManifest Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-02-25T03:34:37.850</Modified>
+      <Modified>2023-03-03T02:19:26.799</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-02-25T03:34:37.425</Modified>
+      <Modified>2023-03-03T02:19:26.112</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.runtimeconfig.json">
       <PackagePath>QuotebookApp.runtimeconfig.json</PackagePath>
-      <Modified>2023-02-25T03:34:37.033</Modified>
+      <Modified>2023-03-03T01:57:30.942</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.dll">
       <PackagePath>QuotebookApp.dll</PackagePath>
-      <Modified>2023-02-25T03:34:34.802</Modified>
+      <Modified>2023-03-03T02:19:24.945</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>QuotebookApp.exe</PackagePath>
-      <Modified>2023-02-25T03:34:34.840</Modified>
+      <Modified>2023-03-03T02:19:24.955</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.netcore.app.runtime.win-x64\7.0.3\runtimes\win-x64\lib\net7.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -805,6 +805,14 @@
       <PackagePath>WinRT.Runtime.dll</PackagePath>
       <Modified>2022-11-16T01:34:42.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\communitytoolkit.mvvm\8.1.0\lib\net6.0\CommunityToolkit.Mvvm.dll">
+      <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
+      <Modified>2023-01-17T22:56:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.aspnet.webapi.client\5.2.9\lib\netstandard2.0\System.Net.Http.Formatting.dll">
+      <PackagePath>System.Net.Http.Formatting.dll</PackagePath>
+      <Modified>2022-05-27T23:39:42.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.extensions.configuration\7.0.0\lib\net7.0\Microsoft.Extensions.Configuration.dll">
       <PackagePath>Microsoft.Extensions.Configuration.dll</PackagePath>
       <Modified>2022-10-18T16:15:22.000</Modified>
@@ -909,6 +917,14 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
       <Modified>2022-11-08T19:31:22.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\newtonsoft.json\10.0.1\lib\netstandard1.3\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+      <Modified>2017-03-20T20:03:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\newtonsoft.json.bson\1.0.1\lib\netstandard1.3\Newtonsoft.Json.Bson.dll">
+      <PackagePath>Newtonsoft.Json.Bson.dll</PackagePath>
+      <Modified>2017-03-22T11:01:20.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.graphics.win2d\1.0.4\runtimes\win10-x64\native\Microsoft.Graphics.Canvas.dll">
       <PackagePath>Microsoft.Graphics.Canvas.dll</PackagePath>
       <Modified>2022-10-04T20:41:34.000</Modified>
@@ -917,9 +933,13 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
       <Modified>2022-11-08T19:31:24.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\runtime.win7-x64.runtime.native.system.io.compression\4.3.0\runtimes\win7-x64\native\clrcompression.dll">
+      <PackagePath>clrcompression.dll</PackagePath>
+      <Modified>2016-11-05T04:34:54.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.deps.json">
       <PackagePath>QuotebookApp.deps.json</PackagePath>
-      <Modified>2023-02-25T03:34:37.650</Modified>
+      <Modified>2023-03-03T02:19:26.506</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\dotnet\packs\Microsoft.Maui.Controls.Ref.win\7.0.59\ref\net7.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>
@@ -937,25 +957,41 @@
       <PackagePath>AboutAssets.txt</PackagePath>
       <Modified>2023-02-25T03:19:52.335</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\APIKey.secret">
+      <PackagePath>Secrets\APIKey.secret</PackagePath>
+      <Modified>2023-02-25T14:39:16.325</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\QuoteSheetName.secret">
+      <PackagePath>Secrets\QuoteSheetName.secret</PackagePath>
+      <Modified>2023-02-20T22:14:46.937</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\SheetID.secret">
+      <PackagePath>Secrets\SheetID.secret</PackagePath>
+      <Modified>2023-02-25T14:39:33.418</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\UserSheetName.secret">
+      <PackagePath>Secrets\UserSheetName.secret</PackagePath>
+      <Modified>2023-02-25T14:39:51.425</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:33.664</Modified>
+      <Modified>2023-02-26T01:52:36.950</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
       <PackagePath>splashSplashScreen.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:33.682</Modified>
+      <Modified>2023-02-26T01:52:36.972</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
       <PackagePath>splashSplashScreen.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:33.707</Modified>
+      <Modified>2023-02-26T01:52:37.002</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
       <PackagePath>splashSplashScreen.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:33.743</Modified>
+      <Modified>2023-02-26T01:52:37.045</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
       <PackagePath>splashSplashScreen.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:33.888</Modified>
+      <Modified>2023-02-26T01:52:37.263</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
       <PackagePath>OpenSans-Regular.ttf</PackagePath>
@@ -967,207 +1003,207 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2023-02-25T03:34:33.971</Modified>
+      <Modified>2023-02-26T01:52:37.373</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.319</Modified>
+      <Modified>2023-02-26T01:52:37.907</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.333</Modified>
+      <Modified>2023-02-26T01:52:37.929</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.345</Modified>
+      <Modified>2023-02-26T01:52:37.945</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.365</Modified>
+      <Modified>2023-02-26T01:52:37.974</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.443</Modified>
+      <Modified>2023-02-26T01:52:38.060</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.073</Modified>
+      <Modified>2023-02-26T01:52:37.527</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.082</Modified>
+      <Modified>2023-02-26T01:52:37.535</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.115</Modified>
+      <Modified>2023-02-26T01:52:37.568</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.090</Modified>
+      <Modified>2023-02-26T01:52:37.544</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.099</Modified>
+      <Modified>2023-02-26T01:52:37.549</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.041</Modified>
+      <Modified>2023-02-26T01:52:37.479</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.046</Modified>
+      <Modified>2023-02-26T01:52:37.488</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.065</Modified>
+      <Modified>2023-02-26T01:52:37.519</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.051</Modified>
+      <Modified>2023-02-26T01:52:37.496</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.055</Modified>
+      <Modified>2023-02-26T01:52:37.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:33.991</Modified>
+      <Modified>2023-02-26T01:52:37.386</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:33.996</Modified>
+      <Modified>2023-02-26T01:52:37.392</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.001</Modified>
+      <Modified>2023-02-26T01:52:37.401</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.006</Modified>
+      <Modified>2023-02-26T01:52:37.412</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.012</Modified>
+      <Modified>2023-02-26T01:52:37.426</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.016</Modified>
+      <Modified>2023-02-26T01:52:37.434</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.021</Modified>
+      <Modified>2023-02-26T01:52:37.442</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.037</Modified>
+      <Modified>2023-02-26T01:52:37.473</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.024</Modified>
+      <Modified>2023-02-26T01:52:37.452</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.028</Modified>
+      <Modified>2023-02-26T01:52:37.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.179</Modified>
+      <Modified>2023-02-26T01:52:37.691</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.187</Modified>
+      <Modified>2023-02-26T01:52:37.706</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.196</Modified>
+      <Modified>2023-02-26T01:52:37.726</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.207</Modified>
+      <Modified>2023-02-26T01:52:37.745</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.226</Modified>
+      <Modified>2023-02-26T01:52:37.775</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.146</Modified>
+      <Modified>2023-02-26T01:52:37.625</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.151</Modified>
+      <Modified>2023-02-26T01:52:37.640</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.156</Modified>
+      <Modified>2023-02-26T01:52:37.647</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.162</Modified>
+      <Modified>2023-02-26T01:52:37.658</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.173</Modified>
+      <Modified>2023-02-26T01:52:37.679</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.120</Modified>
+      <Modified>2023-02-26T01:52:37.579</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.124</Modified>
+      <Modified>2023-02-26T01:52:37.587</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.128</Modified>
+      <Modified>2023-02-26T01:52:37.597</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.133</Modified>
+      <Modified>2023-02-26T01:52:37.607</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.141</Modified>
+      <Modified>2023-02-26T01:52:37.619</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.233</Modified>
+      <Modified>2023-02-26T01:52:37.783</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.241</Modified>
+      <Modified>2023-02-26T01:52:37.793</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.255</Modified>
+      <Modified>2023-02-26T01:52:37.805</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.270</Modified>
+      <Modified>2023-02-26T01:52:37.831</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.308</Modified>
+      <Modified>2023-02-26T01:52:37.888</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.019</Modified>
+      <Modified>2023-02-26T01:52:37.484</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.036</Modified>
+      <Modified>2023-02-26T01:52:37.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.064</Modified>
+      <Modified>2023-02-26T01:52:37.539</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.096</Modified>
+      <Modified>2023-02-26T01:52:37.572</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2023-02-25T03:34:34.168</Modified>
+      <Modified>2023-02-26T01:52:37.679</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

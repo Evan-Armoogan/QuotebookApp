@@ -6,6 +6,7 @@ C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-window
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.pdb
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Mvvm.dll
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Configuration.dll
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.DependencyInjection.dll
@@ -322,3 +323,7 @@ C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-window
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\System.Net.Http.Formatting.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Newtonsoft.Json.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Newtonsoft.Json.Bson.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\clrcompression.dll
