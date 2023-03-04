@@ -22,10 +22,13 @@ public static class MauiProgram
 #endif
 
 		builder.Services.AddSingleton<UserService>();
+		builder.Services.AddSingleton<QuoteService>();
 
 		builder.Services.AddSingleton<LoginViewModel>();
+		builder.Services.AddSingleton<QuoteViewModel>();
 
 		builder.Services.AddSingleton<LoginPage>();
+		builder.Services.AddSingleton<QuotePage>();
 
 
 

@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:QuotebookApp.Model"
              x:Class="QuotebookApp.View.QuotePage"
-             Title="QuotePage">
+             Title="{Binding Title}">
     <VerticalStackLayout>
         <Label 
             Text="Welcome to Quotes!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="CenterAndExpand" />
+        <Grid ColumnDefinitions="*,*"
+              ColumnSpacing="7"
+              RowDefinitions="*,Auto"
+              RowSpacing="10">
+            <CollectionView Grid.ColumnSpan="2"
+                            ItemsSource="{Binding Quotes}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Quote">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="100">
+                                <Label Text="{Binding QuoteString}"/>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            <Button Grid.Row="2"
+                    Text="Refresh Quotes"
+                    Command="{Binding GetQuotesCommand}"/>
+
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

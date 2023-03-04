@@ -40,6 +40,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = QuotebookApp.Resources.Sty
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
+[C:/Users/Admin/source/repos/cs/QuotebookApp/QuotebookApp/View/HomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuotebookApp.View.HomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = View\HomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = View\HomePage.xaml
+
 [C:/Users/Admin/source/repos/cs/QuotebookApp/QuotebookApp/View/LoginPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = QuotebookApp.View.LoginPage.xaml

@@ -7,4 +7,9 @@
     <DefaultDevice>pixel_5_-_api_33</DefaultDevice>
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
   </PropertyGroup>
+  <ItemGroup>
+    <MauiXaml Update="View\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+  </ItemGroup>
 </Project>

@@ -3,17 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuotebookApp.View.LoginPage"
              Title="{Binding Title}">
-    <VerticalStackLayout HorizontalOptions="Center">
-        <Entry Placeholder="Username"
+    <VerticalStackLayout HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand">
+        
+
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand"
+                             IsVisible="{Binding IsNotLoggedIn}">
+            <Entry Placeholder="Username"
                HorizontalOptions="CenterAndExpand"
                WidthRequest="250"
                Text="{Binding Username}"/>
-        <Entry Placeholder="Password"
+            <Entry Placeholder="Password"
                HorizontalOptions="CenterAndExpand"
                WidthRequest="250"
                IsPassword="True"
                Text="{Binding Password}"/>
-        <Border
+            <Border
                 IsVisible="{Binding LoginInvalid}"
                 Stroke="#c76763"
                 StrokeThickness="2"
@@ -21,22 +27,36 @@
                 Padding="16,8"
                 HorizontalOptions="Center"
                 Background="#c57e78" >
-            <Label
+                <Label
                     Text="Invalid username or password"
                     TextColor="White"
                     FontSize="16"
                     FontAttributes="Bold" />
-        </Border>
-        <Button Text="Login"
+            </Border>
+            <Button Text="Login"
                 WidthRequest="150"
                 HorizontalOptions="Center"
                 IsEnabled="True"
                 Command="{Binding LoginCommand}"/>
 
-        <ActivityIndicator IsVisible="{Binding IsBusy}"
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="CenterAndExpand" />
+        </VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand"
+                             IsVisible="{Binding IsLoggedIn}">
+            <Button Text="Quotebook"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Command="{Binding GoToQuotePageCommand}"/>
+            <Button Text="Logout"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Command="{Binding LogoutCommand}"/>
+
+        </VerticalStackLayout>
 
     </VerticalStackLayout>
 </ContentPage>
