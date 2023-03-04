@@ -58,6 +58,4 @@ splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
 AboutAssets.txt
 Secrets\APIKey.secret
-Secrets\QuoteSheetName.secret
 Secrets\SheetID.secret
-Secrets\UserSheetName.secret

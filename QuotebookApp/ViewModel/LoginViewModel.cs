@@ -1,4 +1,5 @@
 ﻿using QuotebookApp.Services;
+using System.Linq;
 
 namespace QuotebookApp.ViewModel;
 
@@ -6,8 +7,6 @@ public partial class LoginViewModel : BaseViewModel
 {
     UserService userService;
 
-    // don't think I need this here, but will in quote page.
-    //public ObservableCollection<User> Users { get; } = new ObservableCollection<User>();
 
     [ObservableProperty]
     string username;
@@ -25,6 +24,21 @@ public partial class LoginViewModel : BaseViewModel
         this.userService = userService;
     }
 
+    [RelayCommand]
+    async Task GoToQuotePageAsync()
+    {
+        await Shell.Current.GoToAsync(nameof(QuotePage));
+    }
+
+    [RelayCommand]
+    void Logout()
+    {
+        IsLoggedIn = false;
+        GlobalData.IsLoggedIn = false;
+        GlobalData.CurrentUser = null;
+        userService.ClearUsers();
+        Title = "Login";
+    }
 
     [RelayCommand]
     async Task LoginAsync()
@@ -55,6 +69,13 @@ public partial class LoginViewModel : BaseViewModel
                 GlobalData.IsLoggedIn = true;
                 IsLoggedIn = true;
                 LoginInvalid = false;
+                Title = "Home";
+
+                // empty username and password fields
+                Username = "";
+                Password = "";
+
+                break;
             }
         }
 
@@ -62,6 +83,9 @@ public partial class LoginViewModel : BaseViewModel
         {
             GlobalData.CurrentUser = null;
             LoginInvalid = true;
+
+            // empty password field
+            Password = "";
         }
 
         IsBusy = false;

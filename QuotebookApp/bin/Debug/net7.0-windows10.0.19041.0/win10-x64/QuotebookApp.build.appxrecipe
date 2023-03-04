@@ -721,14 +721,8 @@
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\APIKey.secret">
       <PackagePath>Secrets\APIKey.secret</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\QuoteSheetName.secret">
-      <PackagePath>Secrets\QuoteSheetName.secret</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\SheetID.secret">
       <PackagePath>Secrets\SheetID.secret</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\UserSheetName.secret">
-      <PackagePath>Secrets\UserSheetName.secret</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>

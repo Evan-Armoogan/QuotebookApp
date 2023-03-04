@@ -16,5 +16,5 @@ public partial class BaseViewModel : ObservableObject
     bool isLoggedIn;
 
     public bool IsNotBusy => !IsBusy;
-    public bool IsNotLoggedIn { get { return !IsLoggedIn; } }
+    public bool IsNotLoggedIn => !IsLoggedIn;
 }

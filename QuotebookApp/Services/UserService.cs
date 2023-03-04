@@ -15,6 +15,12 @@ public class UserService
     }
 
     List<User> userList = new List<User>();
+    
+    public void ClearUsers()
+    {
+        userList.Clear();
+    }
+
     public async Task<List<User>> GetUsers()
     {
         if (userList?.Count > 0)
