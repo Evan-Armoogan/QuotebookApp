@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Sheets.v4;
 
 namespace QuotebookApp;
 
@@ -14,14 +11,11 @@ public class GlobalData
     public static string SheetID { get; private set; }
     public static List<int> RetryStatusCodes { get; private set; }
     public static User CurrentUser { get; set; }
+    public static List<User> Users { get; set; }
 
 
     public static bool IsLoggedIn { get; set; } = false;
 
-    public static void ResetFlyoutMenu()
-    {
-        
-    }
 
 
     public async static void InitializeApiParameters()
@@ -38,6 +32,7 @@ public class GlobalData
         reader_url.Close();
         stream_url?.Close();
     }
+
 
     public static void IniitalizeRetryStatusCodes()
     {

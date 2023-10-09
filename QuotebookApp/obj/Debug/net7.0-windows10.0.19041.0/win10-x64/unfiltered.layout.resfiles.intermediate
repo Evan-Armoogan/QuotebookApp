@@ -58,4 +58,6 @@ splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
 AboutAssets.txt
 Secrets\APIKey.secret
+Secrets\ApplicationName.secret
+Secrets\quotebook-app-378423-8e11a93a2467.secret
 Secrets\SheetID.secret

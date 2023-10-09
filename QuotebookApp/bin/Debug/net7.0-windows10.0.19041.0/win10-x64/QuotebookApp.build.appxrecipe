@@ -34,6 +34,15 @@
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.dll">
       <PackagePath>QuotebookApp.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\APIKey.secret">
+      <PackagePath>Secrets\APIKey.secret</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\quotebook-app-378423-8e11a93a2467.secret">
+      <PackagePath>Secrets\quotebook-app-378423-8e11a93a2467.secret</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\SheetID.secret">
+      <PackagePath>Secrets\SheetID.secret</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>QuotebookApp.exe</PackagePath>
     </AppxPackagedFile>
@@ -607,6 +616,21 @@
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\communitytoolkit.mvvm\8.1.0\lib\net6.0\CommunityToolkit.Mvvm.dll">
       <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\google.apis\1.62.0\lib\netstandard2.0\Google.Apis.dll">
+      <PackagePath>Google.Apis.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\google.apis.auth\1.62.0\lib\netstandard2.0\Google.Apis.Auth.PlatformServices.dll">
+      <PackagePath>Google.Apis.Auth.PlatformServices.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\google.apis.auth\1.62.0\lib\netstandard2.0\Google.Apis.Auth.dll">
+      <PackagePath>Google.Apis.Auth.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\google.apis.core\1.62.0\lib\netstandard2.0\Google.Apis.Core.dll">
+      <PackagePath>Google.Apis.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\google.apis.sheets.v4\1.62.0.3148\lib\netstandard2.0\Google.Apis.Sheets.v4.dll">
+      <PackagePath>Google.Apis.Sheets.v4.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.aspnet.webapi.client\5.2.9\lib\netstandard2.0\System.Net.Http.Formatting.dll">
       <PackagePath>System.Net.Http.Formatting.dll</PackagePath>
     </AppxPackagedFile>
@@ -688,7 +712,7 @@
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.windowsappsdk\1.2.221209.1\lib\net6.0-windows10.0.18362.0\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\newtonsoft.json\10.0.1\lib\netstandard1.3\Newtonsoft.Json.dll">
+    <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\newtonsoft.json\13.0.3\lib\net6.0\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\newtonsoft.json.bson\1.0.1\lib\netstandard1.3\Newtonsoft.Json.Bson.dll">
@@ -718,11 +742,8 @@
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\APIKey.secret">
-      <PackagePath>Secrets\APIKey.secret</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\SheetID.secret">
-      <PackagePath>Secrets\SheetID.secret</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\ApplicationName.secret">
+      <PackagePath>Secrets\ApplicationName.secret</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>

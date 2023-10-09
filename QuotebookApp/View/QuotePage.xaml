@@ -5,36 +5,98 @@
              x:Class="QuotebookApp.View.QuotePage"
              Title="{Binding Title}">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Quotes!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="CenterAndExpand" />
-        <Grid ColumnDefinitions="*,*"
+        <Grid ColumnDefinitions="*,*,*"
               ColumnSpacing="7"
-              RowDefinitions="*,Auto"
-              RowSpacing="10">
-            <CollectionView Grid.ColumnSpan="2"
+              RowDefinitions="Auto,*,Auto"
+              RowSpacing="10"
+              IsVisible="{Binding IsNotAddQuote}">
+            <Button Text="{Binding FilterBtnText}"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    IsVisible="True"
+                    Command="{Binding FilterOptionsCommand}"/>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Refresh Quotes"
+                    IsVisible="True"
+                    Command="{Binding GetQuotesCommand}"/>
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    Text="Add Quote"
+                    IsVisible="True"
+                    Command="{Binding CreateQuoteCommand}"/>
+            <Frame IsVisible="{Binding FilterQuotes}"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="3">
+                <HorizontalStackLayout Spacing="3"
+                                   HorizontalOptions="CenterAndExpand">
+                    <Picker ItemsSource="{Binding Users}"
+                        SelectedIndex="{Binding QuoteeIndex}"
+                        Title="Said By"/>
+                    <Picker ItemsSource="{Binding Users}"
+                        SelectedIndex="{Binding QuoterIndex}"
+                        Title="Quoted By"/>
+                    <CheckBox IsChecked="{Binding FilterDate}"/>
+                    <DatePicker Date="{Binding QuoteDate}"
+                                IsEnabled="{Binding FilterDate}"/>
+                    <Button Text="Search"
+                        Command="{Binding FilterQuotesListCommand}"/>
+                </HorizontalStackLayout>
+            </Frame>
+            <CollectionView Grid.ColumnSpan="3"
                             ItemsSource="{Binding Quotes}"
-                            SelectionMode="None">
+                            SelectionMode="None"
+                            Grid.Row="2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Quote">
-                        <Grid Padding="10">
-                            <Frame HeightRequest="100">
-                                <Label Text="{Binding QuoteString}"/>
+                        <Grid Padding="5">
+                            <Frame>
+                                <VerticalStackLayout Spacing="5">
+                                    <Label FontSize="16"
+                                           Text="{Binding QuoteString}"/>
+                                    <Label HorizontalOptions="EndAndExpand"
+                                           FontSize="14"
+                                           Text="{Binding QuoteeTimeString, StringFormat=-{0}}"/>
+                                    <Label HorizontalOptions="EndAndExpand"
+                                           FontSize="14"
+                                           Text="{Binding Quoter, StringFormat=-Quoter: {0}}"/>
+                                </VerticalStackLayout>
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
             </CollectionView>
+        </Grid>
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="*,150,*"
+              ColumnSpacing="7"
+              RowSpacing="10"
+              IsVisible="{Binding IsAddQuote}"
+              VerticalOptions="Center">
+            <Picker ItemsSource="{Binding Users}"
+                    SelectedIndex="{Binding QuoteeIndex}"
+                    Title="Said By"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="CenterAndExpand"/>
+            <Editor Placeholder="Quote"
+                    Text="{Binding NewQuoteString}"
+                    AutoSize="TextChanges"
+                    HeightRequest="150"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"/>
             <Button Grid.Row="2"
-                    Text="Refresh Quotes"
-                    Command="{Binding GetQuotesCommand}"/>
-
+                    Grid.Column="0"
+                    Text="Back"
+                    Command="{Binding ExitAddQuoteCommand}"/>
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Text="Add Quote"
+                    Command="{Binding AddQuoteCommand}"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
