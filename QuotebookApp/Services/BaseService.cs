@@ -35,7 +35,7 @@ public class BaseService
 
         string[] scopes = { SheetsService.Scope.Spreadsheets };
         GoogleCredential credential;
-        using var stream = await FileSystem.OpenAppPackageFileAsync("Secrets/quotebook-app-378423-8e11a93a2467.secret");
+        using var stream = await FileSystem.OpenAppPackageFileAsync("Secrets/quotebook-app-378423-455a59dee55d.secret");
         credential = GoogleCredential.FromStream(stream).CreateScoped(scopes);
         stream?.Close();
 
