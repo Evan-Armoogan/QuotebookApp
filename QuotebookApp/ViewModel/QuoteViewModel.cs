@@ -36,6 +36,12 @@ public partial class QuoteViewModel : BaseViewModel
     [ObservableProperty]
     string newQuoteString;
 
+    [ObservableProperty]
+    int quoteListHeight;
+
+    [ObservableProperty]
+    LayoutOptions quoteListAlignment;
+
     public bool IsNotAddQuote => !IsAddQuote;
 
     public ObservableCollection<string> Users { get; } = new ObservableCollection<string>();
@@ -53,6 +59,21 @@ public partial class QuoteViewModel : BaseViewModel
         QuoteDate = DateTime.Today;
     }
 
+    private void setQuoteListProperties()
+    {
+        // this sucks to do, but it's the only way since there is a bug with .NET MAUI CollectionView scrolling
+#if ANDROID
+        QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 525;
+        QuoteListAlignment = LayoutOptions.Center;
+#elif IOS
+        QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 150;
+        QuoteListAlignment = LayoutOptions.Center;
+#else
+        QuoteListHeight = 600;
+        QuoteListAlignment = LayoutOptions.Fill;
+#endif
+    }
+
 
     public QuoteViewModel(QuoteService quoteService)
     {
@@ -68,6 +89,8 @@ public partial class QuoteViewModel : BaseViewModel
 
         // clear quotebook
         Quotes.Clear();
+
+        setQuoteListProperties();
     }
 
     [RelayCommand]
@@ -125,6 +148,7 @@ public partial class QuoteViewModel : BaseViewModel
             Quote new_quote = new Quote(DateTime.Now, GlobalData.CurrentUser.UserName, Users[QuoteeIndex], NewQuoteString);
             new_quote.CreateTimestampString();
             new_quote.CreateQuoteeTimeString();
+            new_quote.CreateQuoterString();
             Quotes.Add(new_quote);
         }
         catch (Exception ex)
@@ -175,6 +199,8 @@ public partial class QuoteViewModel : BaseViewModel
             // initialize quote filter pickers
             resetFilterOptions();
 
+            // set new height for quote list
+            QuoteListHeight -= 50;
 
             // copy all our existing quotes to memory
             allQuotes = new List<Quote>();
@@ -187,6 +213,9 @@ public partial class QuoteViewModel : BaseViewModel
         {
             FilterQuotes = false;
             FilterBtnText = "Filter";
+
+            // set new height for quote list
+            QuoteListHeight += 50;
 
             // restore all quotes
             Quotes.Clear();
@@ -243,30 +272,3 @@ public partial class QuoteViewModel : BaseViewModel
         }
     }
 }
-
-/*
- if (Quotee == "" && Quoter == "")
-            {
-                // only check timestamps
-                if (AreDatesEqual(quote.Timestamp, QuoteDate))
-                    new_quotes.Add(quote);
-            }
-            else if (Quotee == "" && Quoter != "")
-            {
-                // Check Quoter and timestamp
-                if (quote.Quoter == Quoter && AreDatesEqual(quote.Timestamp, QuoteDate))
-                    new_quotes.Add(quote);
-            }
-            else if (Quotee != "" && Quoter == "")
-            {
-                // Check quotee and timestamp
-                if (quote.Quotee == Quotee && AreDatesEqual(quote.Timestamp, QuoteDate))
-                    new_quotes.Add(quote);
-            }
-            else
-            {
-                // check all
-                if (quote.Quotee == Quotee && quote.Quoter == Quoter && AreDatesEqual(quote.Timestamp, QuoteDate))
-                    new_quotes.Add(quote);
-            }
- */
