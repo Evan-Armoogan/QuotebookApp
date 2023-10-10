@@ -66,6 +66,7 @@ public class QuoteService
             }
 
             quote.CreateQuoteeTimeString();
+            quote.CreateQuoterString();
 
             quoteList.Add(quote);
         }

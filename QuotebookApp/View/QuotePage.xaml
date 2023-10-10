@@ -8,7 +8,7 @@
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"
-                           VerticalOptions="CenterAndExpand" />
+                           VerticalOptions="Center"/>
         <Grid ColumnDefinitions="*,*,*"
               ColumnSpacing="7"
               RowDefinitions="Auto,Auto,Auto"
@@ -39,7 +39,7 @@
                     <Picker ItemsSource="{Binding Users}"
                             SelectedIndex="{Binding QuoteeIndex}"
                             Title="Said By"
-                            HorizontalTextAlignment="Center"/> <!-- can't figure out better way to space this -->
+                            HorizontalTextAlignment="Center"/>
                     <Picker ItemsSource="{Binding Users}"
                             SelectedIndex="{Binding QuoterIndex}"
                             Title="Quoted By"/>
@@ -47,29 +47,30 @@
                                 IsEnabled="{Binding FilterDate}"/>
                     <CheckBox IsChecked="{Binding FilterDate}"/>
                     <Button Text="Search"
+                            IsEnabled="{Binding IsNotBusy}"
                             Command="{Binding FilterQuotesListCommand}"/>
                 </HorizontalStackLayout>
             </Frame>
             <CollectionView Grid.ColumnSpan="3"
                             ItemsSource="{Binding Quotes}"
                             SelectionMode="None"
-                            Grid.Row="2">
+                            Grid.Row="2"
+                            HorizontalOptions="{Binding QuoteListAlignment}"
+                            MaximumHeightRequest="{Binding QuoteListHeight}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Quote">
-                        <Grid Padding="5">
-                            <Frame>
-                                <VerticalStackLayout Spacing="5">
-                                    <Label FontSize="16"
+                        <Frame Margin="5">
+                            <VerticalStackLayout Spacing="5">
+                                <Label FontSize="16"
                                            Text="{Binding QuoteString}"/>
-                                    <Label HorizontalOptions="EndAndExpand"
+                                <Label HorizontalOptions="EndAndExpand"
                                            FontSize="14"
-                                           Text="{Binding QuoteeTimeString, StringFormat=-{0}}"/>
-                                    <Label HorizontalOptions="EndAndExpand"
+                                           Text="{Binding QuoteeTimeString}"/>
+                                <Label HorizontalOptions="EndAndExpand"
                                            FontSize="14"
-                                           Text="{Binding Quoter, StringFormat=-Quoter: {0}}"/>
-                                </VerticalStackLayout>
-                            </Frame>
-                        </Grid>
+                                           Text="{Binding QuoterString}"/>
+                            </VerticalStackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -83,10 +84,10 @@
               VerticalOptions="Center">
             <Picker ItemsSource="{Binding Users}"
                     SelectedIndex="{Binding QuoteeIndex}"
-                    Title=" Said By"
+                    Title="Said By"
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
-                    HorizontalOptions="CenterAndExpand"/> <!-- Can't figure out better way to space 'Said By' text -->
+                    HorizontalOptions="CenterAndExpand"/>
             <Editor Placeholder="Quote"
                     Text="{Binding NewQuoteString}"
                     AutoSize="TextChanges"

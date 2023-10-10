@@ -22,6 +22,7 @@ public class Quote
     public string QuoteString { get; set; }
     public string TimestampString { get; set; }
     public string QuoteeTimeString { get; set; }
+    public string QuoterString { get; set; }
 
     public void CreateTimestampString()
     {
@@ -30,5 +31,9 @@ public class Quote
     public void CreateQuoteeTimeString()
     {
         QuoteeTimeString = "-" + Quotee + ", " + TimestampString;
+    }
+    public void CreateQuoterString()
+    {
+        QuoterString = "Added by: " + Quoter;
     }
 }
