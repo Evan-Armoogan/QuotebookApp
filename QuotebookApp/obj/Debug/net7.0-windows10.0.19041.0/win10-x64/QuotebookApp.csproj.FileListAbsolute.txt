@@ -327,3 +327,10 @@ C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-window
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Newtonsoft.Json.dll
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Newtonsoft.Json.Bson.dll
 C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\clrcompression.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Google.Apis.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Google.Apis.Auth.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Google.Apis.Core.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Google.Apis.Sheets.v4.dll
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Secrets\APIKey.secret
+C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Secrets\SheetID.secret

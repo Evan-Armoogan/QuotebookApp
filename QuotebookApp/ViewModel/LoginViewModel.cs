@@ -89,5 +89,6 @@ public partial class LoginViewModel : BaseViewModel
         }
 
         IsBusy = false;
+        GlobalData.Users = users;
     }
 }

@@ -21,8 +21,7 @@ public class QuoteService
 
     public async Task<List<Quote>> GetQuotes()
     {
-        if (quoteList?.Count > 0)
-            return quoteList;
+        quoteList.Clear();
 
         string range = "Quotes!A2:D";
 
@@ -52,10 +51,50 @@ public class QuoteService
             DateTime dt = new DateTime(year, month, day, hour, minute, second);
 
             Quote quote = new Quote(dt, value[1], value[2], value[3]);
+            quote.CreateTimestampString();
+
+            // multi-line quotes
+            if (quote.QuoteString.Contains(" // "))
+            {
+                quote.QuoteString = quote.QuoteString.Replace(" // ", "\n");
+            }
+            if (quote.Quotee.Contains(","))
+            {
+                int idx = quote.Quotee.LastIndexOf(", ");
+
+                quote.Quotee = quote.Quotee.Remove(idx, ", ".Length).Insert(idx, " & ");
+            }
+
+            quote.CreateQuoteeTimeString();
 
             quoteList.Add(quote);
         }
 
         return quoteList;
+    }
+
+    public async Task AddQuote(string quoter, string quotee, string quotestring)
+    {
+        DateTime timestamp = DateTime.Now;
+        string year = timestamp.Year.ToString();
+        string month = string.Format("{0:00}", timestamp.Month.ToString());
+        string day = string.Format("{0:00}", timestamp.Day.ToString());
+        string hour = string.Format("{0:00}", timestamp.Hour.ToString());
+        string minute = string.Format("{0:00}", timestamp.Minute.ToString());
+        string second = string.Format("{0:00}", timestamp.Second.ToString());
+
+        string timestamp_string = $"{year}-{month}-{day} {hour}:{minute}:{second}";
+
+
+        string range = "Quotes!A2:D";
+        string[] values = new string[4];
+
+        values[0] = timestamp_string;
+        values[1] = quoter;
+        values[2] = quotee;
+        values[3] = quotestring;
+
+        await service.SetResponse(range, values);
+        return;
     }
 }
