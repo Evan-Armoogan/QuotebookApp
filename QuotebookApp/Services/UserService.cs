@@ -23,7 +23,8 @@ public class UserService
 
     public async Task<List<User>> GetUsers()
     {
-        ClearUsers();
+        if (userList?.Count > 0)
+            return userList;
 
         string range = "Users!A2:C";
 

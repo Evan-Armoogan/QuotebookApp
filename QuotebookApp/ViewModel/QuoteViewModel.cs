@@ -63,7 +63,7 @@ public partial class QuoteViewModel : BaseViewModel
     {
         // this sucks to do, but it's the only way since there is a bug with .NET MAUI CollectionView scrolling
 #if ANDROID
-        QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 520;
+        QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 525;
         QuoteListAlignment = LayoutOptions.Center;
 #elif IOS
         QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 150;

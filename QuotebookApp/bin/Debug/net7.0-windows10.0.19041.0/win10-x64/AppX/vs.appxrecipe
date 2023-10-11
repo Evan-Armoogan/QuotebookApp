@@ -29,13 +29,13 @@
     <AppXManifest Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-10-11T02:09:53.072</Modified>
+      <Modified>2023-10-11T02:59:14.298</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-10-11T02:09:51.358</Modified>
+      <Modified>2023-10-11T02:59:13.549</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.runtimeconfig.json">
       <PackagePath>QuotebookApp.runtimeconfig.json</PackagePath>
@@ -43,7 +43,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.dll">
       <PackagePath>QuotebookApp.dll</PackagePath>
-      <Modified>2023-10-11T02:09:48.273</Modified>
+      <Modified>2023-10-11T02:59:10.917</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\Resources\Raw\Secrets\APIKey.secret">
       <PackagePath>Secrets\APIKey.secret</PackagePath>
@@ -55,7 +55,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>QuotebookApp.exe</PackagePath>
-      <Modified>2023-10-11T02:09:48.296</Modified>
+      <Modified>2023-10-11T02:59:10.961</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.netcore.app.runtime.win-x64\7.0.3\runtimes\win-x64\lib\net7.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -967,7 +967,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\source\repos\cs\QuotebookApp\QuotebookApp\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\QuotebookApp.deps.json">
       <PackagePath>QuotebookApp.deps.json</PackagePath>
-      <Modified>2023-10-11T02:09:52.384</Modified>
+      <Modified>2023-10-11T02:59:14.008</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\dotnet\packs\Microsoft.Maui.Controls.Ref.win\7.0.59\ref\net7.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>

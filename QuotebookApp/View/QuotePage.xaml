@@ -59,7 +59,8 @@
                             MaximumHeightRequest="{Binding QuoteListHeight}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Quote">
-                        <Frame Margin="5">
+                        <Frame Margin="5"
+                               VerticalOptions="Fill">
                             <VerticalStackLayout Spacing="5">
                                 <Label FontSize="16"
                                            Text="{Binding QuoteString}"/>

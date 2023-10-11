@@ -25,12 +25,10 @@ public static class MauiProgram
 		builder.Services.AddSingleton<QuoteService>();
 
 		builder.Services.AddSingleton<LoginViewModel>();
-		/* We want this to be transient so the page will load new quotes each time it's opened */
-		builder.Services.AddTransient<QuoteViewModel>();
+		builder.Services.AddSingleton<QuoteViewModel>();
 
 		builder.Services.AddSingleton<LoginPage>();
-        /* We want this to be transient so the page will load new quotes each time it's opened */
-        builder.Services.AddTransient<QuotePage>();
+		builder.Services.AddSingleton<QuotePage>();
 
 
 
