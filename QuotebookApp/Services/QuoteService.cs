@@ -53,11 +53,13 @@ public class QuoteService
             Quote quote = new Quote(dt, value[1], value[2], value[3]);
             quote.CreateTimestampString();
 
-            // multi-line quotes
+            /* account for multi line quotes */
             if (quote.QuoteString.Contains(" // "))
             {
-                quote.QuoteString = quote.QuoteString.Replace(" // ", "\n");
+                quote.QuoteString = quote.QuoteString.Replace(" // ", Environment.NewLine.ToString());
             }
+
+            /* account for multiple quotees */
             if (quote.Quotee.Contains(","))
             {
                 int idx = quote.Quotee.LastIndexOf(", ");
@@ -85,6 +87,16 @@ public class QuoteService
         string second = string.Format("{0:00}", timestamp.Second.ToString());
 
         string timestamp_string = $"{year}-{month}-{day} {hour}:{minute}:{second}";
+
+        /* account for multi line quotes */
+        if (quotestring.Contains("\r"))
+        {
+            quotestring = quotestring.Replace("\r", " // ");
+        }
+        else if (quotestring.Contains("\n"))
+        {
+            quotestring = quotestring.Replace("\n", " // ");
+        }
 
 
         string range = "Quotes!A2:D";
