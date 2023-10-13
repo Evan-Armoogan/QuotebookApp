@@ -34,10 +34,7 @@ public class BaseService
         stream_app?.Close();
 
         string[] scopes = { SheetsService.Scope.Spreadsheets };
-        GoogleCredential credential;
-        using var stream = await FileSystem.OpenAppPackageFileAsync("Secrets/quotebook-app-378423-455a59dee55d.secret");
-        credential = GoogleCredential.FromStream(stream).CreateScoped(scopes);
-        stream?.Close();
+        GoogleCredential credential = GoogleCredential.FromJson(ServiceAccount.GetServAcc()).CreateScoped(scopes);
 
         service = new SheetsService(new BaseClientService.Initializer()
         {
@@ -52,7 +49,6 @@ public class BaseService
         string base_url = GlobalData.BaseURL;
         string spreadsheet_id = GlobalData.SheetID;
         string major_dimension = "ROWS";
-        string key = GlobalData.APIKey;
         
         var url = $"{base_url}/{spreadsheet_id}/values/{range}?majorDimension={major_dimension}";
 
@@ -107,7 +103,6 @@ public class BaseService
         string base_url = GlobalData.BaseURL;
         string spreadsheet_id = GlobalData.SheetID;
         string major_dimension = "ROWS";
-        string key = GlobalData.APIKey;
         string value_input_option = "USER_ENTERED";
         string insert_data_option = "INSERT_ROWS";
 
