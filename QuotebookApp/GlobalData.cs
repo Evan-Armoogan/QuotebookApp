@@ -1,13 +1,9 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Sheets.v4;
-
-namespace QuotebookApp;
+﻿namespace QuotebookApp;
 
 public class GlobalData
 {
 
     public static string BaseURL { get; } = "https://sheets.googleapis.com/v4/spreadsheets";
-    public static string APIKey { get; private set; }
     public static string SheetID { get; private set; }
     public static List<int> RetryStatusCodes { get; private set; }
     public static User CurrentUser { get; set; }
@@ -20,12 +16,6 @@ public class GlobalData
 
     public async static void InitializeApiParameters()
     {
-        using var stream_key = await FileSystem.OpenAppPackageFileAsync("Secrets/APIKey.secret");
-        using var reader_key = new StreamReader(stream_key);
-        APIKey = await reader_key.ReadToEndAsync();
-        reader_key.Close();
-        stream_key?.Close();
-
         using var stream_url = await FileSystem.OpenAppPackageFileAsync("Secrets/SheetID.secret");
         using var reader_url = new StreamReader(stream_url);
         SheetID = await reader_url.ReadToEndAsync();
