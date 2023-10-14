@@ -18,7 +18,10 @@ public partial class QuoteViewModel : BaseViewModel
     string filterBtnText;
 
     [ObservableProperty]
-    int quoteeIndex;
+    int quotee1Index;
+
+    [ObservableProperty]
+    int quotee2Index;
 
     [ObservableProperty]
     int quoterIndex;
@@ -54,7 +57,8 @@ public partial class QuoteViewModel : BaseViewModel
 
     private void resetFilterOptions()
     {
-        QuoteeIndex = -1;
+        Quotee1Index = -1;
+        Quotee2Index = -1;
         QuoterIndex = -1;
         QuoteDate = DateTime.Today;
     }
@@ -135,17 +139,19 @@ public partial class QuoteViewModel : BaseViewModel
         {
             IsBusy = true;
 
-            if (QuoteeIndex == -1)
+            if (Quotee1Index == -1)
             {
                 // Quotee was not sent, we should throw an exception
                 throw new Exception("'Said By' parameter was not set.");
             }
 
-            await quoteService.AddQuote(GlobalData.CurrentUser.UserName, Users[QuoteeIndex], NewQuoteString);
+            string quotee = Quotee2Index == -1 ? Users[Quotee1Index] : $"{Users[Quotee1Index]}, {Users[Quotee2Index]}";
+            await quoteService.AddQuote(GlobalData.CurrentUser.UserName, quotee, NewQuoteString);
 
             await Shell.Current.DisplayAlert("Success", "Quote added to quotebook", "OK");
 
-            Quote new_quote = new Quote(DateTime.Now, GlobalData.CurrentUser.UserName, Users[QuoteeIndex], NewQuoteString);
+            string quotee_display = Quotee2Index == -1 ? Users[Quotee1Index] : $"{Users[Quotee1Index]} & {Users[Quotee2Index]}";
+            Quote new_quote = new Quote(DateTime.Now, GlobalData.CurrentUser.UserName, quotee_display, NewQuoteString);
             new_quote.CreateTimestampString();
             new_quote.CreateQuoteeTimeString();
             new_quote.CreateQuoterString();
@@ -161,7 +167,8 @@ public partial class QuoteViewModel : BaseViewModel
             IsBusy = false;
             IsAddQuote = false;
             NewQuoteString = "";
-            QuoteeIndex = -1;
+            Quotee1Index = -1;
+            Quotee2Index = -1;
         }
     }
 
@@ -173,7 +180,8 @@ public partial class QuoteViewModel : BaseViewModel
 
         IsAddQuote = false;
         NewQuoteString = "";
-        QuoteeIndex = -1;
+        Quotee1Index = -1;
+        Quotee2Index = -1;
     }
 
     [RelayCommand]
@@ -241,8 +249,8 @@ public partial class QuoteViewModel : BaseViewModel
 
         string Quotee;
         string Quoter;
-        if (QuoteeIndex != -1)
-            Quotee = GlobalData.Users[QuoteeIndex].UserName;
+        if (Quotee1Index != -1)
+            Quotee = GlobalData.Users[Quotee1Index].UserName;
         else
             Quotee = "";
 
