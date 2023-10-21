@@ -50,6 +50,11 @@
                     HorizontalOptions="Center"
                     Margin="3"
                     Command="{Binding GoToQuotePageCommand}"/>
+            <Button Text="Settings"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Margin="3"
+                    Command="{Binding GoToSettingsPageCommand}"/>
             <Button Text="Logout"
                     WidthRequest="150"
                     HorizontalOptions="Center"

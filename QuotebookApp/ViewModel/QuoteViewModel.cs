@@ -82,6 +82,7 @@ public partial class QuoteViewModel : BaseViewModel
     public QuoteViewModel(QuoteService quoteService)
     {
         Title = "Quotebook";
+        IsBusy = false;
         this.quoteService = quoteService;
         foreach (User user in GlobalData.Users)
         {

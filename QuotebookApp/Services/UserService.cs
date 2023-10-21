@@ -37,4 +37,15 @@ public class UserService
 
         return userList;
     }
+
+    public async Task SetUserPassword(string password)
+    {
+        int user_id = GlobalData.CurrentUser.UserID;
+        int sheet_row = user_id + 1;
+        string range = $"Users!C{sheet_row}";
+
+        string[] values = { password };
+
+        await service.EditResponse(range, values);
+    }
 }
