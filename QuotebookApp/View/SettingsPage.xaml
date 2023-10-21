@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="QuotebookApp.View.SettingsPage"
+             Title="{Binding Title}">
+    
+    <VerticalStackLayout Margin="10">
+        <Frame Margin="5"
+               Padding="15"
+               VerticalOptions="FillAndExpand"
+               HorizontalOptions="CenterAndExpand"
+               HeightRequest="355"
+               WidthRequest="350">
+            <VerticalStackLayout>
+                <Label Text="Account Information"
+                       Style="{StaticResource LargeLabel}" />
+                <Entry Text="{Binding Username}"
+                       IsEnabled="False"
+                       Margin="5"
+                       Placeholder="Username" />
+                <Entry Text="{Binding Password}"
+                       IsEnabled="True"
+                       Margin="5"
+                       IsPassword="True"
+                       Placeholder="Password" >
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior x:Name="PasswordBehaviour"
+                            EventName="TextChanged"
+                            Command="{Binding CheckPasswordValidityCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry Text="{Binding NewPassword}"
+                       IsEnabled="True"
+                       Margin="5"
+                       IsPassword="True"
+                       Placeholder="New Password" >
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior x:Name="NewPasswordBehavior"
+                            EventName="TextChanged"
+                            Command="{Binding CheckPasswordValidityCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry Text="{Binding ConfirmPassword}"
+                       IsEnabled="True"
+                       Margin="5"
+                       IsPassword="True"
+                       Placeholder="Confirm Password" >
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior x:Name="ConfirmPasswordBehavior"
+                            EventName="TextChanged"
+                            Command="{Binding CheckPasswordValidityCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Text="Password must be at least 4 digits"
+                       Margin="5"
+                       Style="{StaticResource SmallLabel}" />
+                <Button Text="Update"
+                        Command="{Binding UpdatePasswordCommand}"
+                        IsEnabled="{Binding IsValidPassword}" 
+                        HorizontalOptions="EndAndExpand"
+                        WidthRequest="125"
+                        Margin="5" />
+            </VerticalStackLayout>
+        </Frame>
+        <!--
+        This feature will work once .NET MAUI has fixed the problems with AppThemes. Uncomment this when that happens.
+        <Frame Margin="5"
+               Padding="15"
+               VerticalOptions="FillAndExpand"
+               HorizontalOptions="CenterAndExpand"
+               HeightRequest="110"
+               WidthRequest="350">
+            <VerticalStackLayout>
+                <Label Text="Theme"
+                       Style="{StaticResource LargeLabel}" />
+                <Picker HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center" 
+                        WidthRequest="200"
+                        Margin="5"
+                        SelectedItem="{Binding SelectedTheme}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Light</x:String>
+                            <x:String>Dark</x:String>
+                            <x:String>Device Default</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                    <Picker.Behaviors>
+                        <toolkit:EventToCommandBehavior x:Name="ThemeChangedBehavior"
+                            EventName="SelectedIndexChanged"
+                            Command="{Binding UpdateThemeCommand}" />
+                    </Picker.Behaviors>
+                </Picker>
+            </VerticalStackLayout>
+        </Frame>
+        -->
+    </VerticalStackLayout>
+</ContentPage>

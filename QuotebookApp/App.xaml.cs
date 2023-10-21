@@ -6,11 +6,13 @@ public partial class App : Application
 {
 	public App()
 	{
-		InitializeComponent();
+        GlobalData.InitializeApiParameters();
+        GlobalData.IniitalizeRetryStatusCodes();
+        GlobalData.InitializeAppTheme();
 
-		GlobalData.InitializeApiParameters();
-		GlobalData.IniitalizeRetryStatusCodes();
-		BaseService.InitializeClient();
+        InitializeComponent();
+
+        BaseService.InitializeClient();
 
 		MainPage = new AppShell();
 	}

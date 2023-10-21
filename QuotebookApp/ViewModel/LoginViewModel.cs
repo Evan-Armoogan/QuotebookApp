@@ -21,6 +21,7 @@ public partial class LoginViewModel : BaseViewModel
     {
         Title = "Login";
         IsLoggedIn = GlobalData.IsLoggedIn;
+        IsBusy = false;
         this.userService = userService;
     }
 
@@ -28,6 +29,12 @@ public partial class LoginViewModel : BaseViewModel
     async Task GoToQuotePageAsync()
     {
         await Shell.Current.GoToAsync(nameof(QuotePage));
+    }
+
+    [RelayCommand]
+    async Task GoToSettingsPageAsync()
+    {
+        await Shell.Current.GoToAsync(nameof(SettingsPage));
     }
 
     [RelayCommand]
