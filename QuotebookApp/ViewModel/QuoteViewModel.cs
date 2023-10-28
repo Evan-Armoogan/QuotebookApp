@@ -43,6 +43,15 @@ public partial class QuoteViewModel : BaseViewModel
     int quoteListHeight;
 
     [ObservableProperty]
+    int topButtonHeight;
+
+    [ObservableProperty]
+    int filterFrameHeight;
+
+    [ObservableProperty]
+    int filterFrameSpacing;
+
+    [ObservableProperty]
     LayoutOptions quoteListAlignment;
 
     public bool IsNotAddQuote => !IsAddQuote;
@@ -65,16 +74,24 @@ public partial class QuoteViewModel : BaseViewModel
 
     private void setQuoteListProperties()
     {
+        TopButtonHeight = 45;
         // this sucks to do, but it's the only way since there is a bug with .NET MAUI CollectionView scrolling
 #if ANDROID
-        QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 520;
+        QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density - Shell.Current.Height - (TopButtonHeight + 15) - 140);
         QuoteListAlignment = LayoutOptions.Center;
+        FilterFrameSpacing = 0;
+        FilterFrameHeight = 55;
 #elif IOS
+        /* no clue if this works for IOS */
         QuoteListHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 150;
         QuoteListAlignment = LayoutOptions.Center;
+        FilterFrameSpacing = 0;
+        FilterFrameHeight = 55;
 #else
-        QuoteListHeight = 600;
+        QuoteListHeight = 590;
         QuoteListAlignment = LayoutOptions.Fill;
+        FilterFrameSpacing = 20;
+        FilterFrameHeight = 70;
 #endif
     }
 
@@ -209,7 +226,7 @@ public partial class QuoteViewModel : BaseViewModel
             resetFilterOptions();
 
             // set new height for quote list
-            QuoteListHeight -= 50;
+            QuoteListHeight -= FilterFrameHeight;
 
             // copy all our existing quotes to memory
             allQuotes = new List<Quote>();
@@ -224,7 +241,7 @@ public partial class QuoteViewModel : BaseViewModel
             FilterBtnText = "Filter";
 
             // set new height for quote list
-            QuoteListHeight += 50;
+            QuoteListHeight += FilterFrameHeight;
 
             // restore all quotes
             Quotes.Clear();
@@ -264,7 +281,8 @@ public partial class QuoteViewModel : BaseViewModel
         List<Quote> new_quotes = new List<Quote>();
         foreach (Quote quote in allQuotes)
         {
-            if (Quotee != quote.Quotee && Quotee != "")
+            /* use contains to account for multi-person quotes */
+            if (!quote.Quotee.Contains(Quotee) && Quotee != "")
                 continue;
             if (Quoter != quote.Quoter && Quoter != "")
                 continue;
