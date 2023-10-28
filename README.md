@@ -3,6 +3,9 @@
 ## Description
 This is a quotebook app that friend groups can use to log quotes, store them for free in the cloud, and access them freely on their mobile devices and computers. Google Sheets and the Google Sheets API is used to store the quotebook data in the cloud and to control access to users. To use this software, follow the instructions below to set up the environment with your Google Sheet and then compile the application for all desired targets.
 
+## Current Release
+Version 1.0.0 (git tag Release_v1.0.0)
+
 ## Prerequisites
 The application is compiled using Microsoft's .NET MAUI. .NET Version 7 (minimum) is required to compile the application for iOS, Android, MacCatalyst, and Windows. Note that if you wish to put the app onto iOS devices, a Apple Developer license is required. Additionally, to build for either iOS or MacCatalyst, access to a Mac is required. 
 
