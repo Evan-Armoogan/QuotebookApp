@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuotebookApp.View.QotdPage"
+             xmlns:model="clr-namespace:QuotebookApp.Model"
+             Title="{Binding Title}">
+    <VerticalStackLayout Padding="10">
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center" />
+        <Grid ColumnDefinitions="*"
+                RowDefinitions="Auto,*,Auto,*,Auto"
+                HeightRequest="{Binding ClientHeight}">
+            <Label Text="Quote of the Day"
+                Margin="5"
+                Style="{StaticResource LargeLabel}"
+                Grid.Row="0"/>
+            <Frame Margin="5"
+                VerticalOptions="Fill"
+                Grid.Row="1">
+                <ScrollView>
+                    <VerticalStackLayout Spacing="5">
+                        <Label FontSize="16"
+                            Text="{Binding QotdQuoteString}"/>
+                        <Label HorizontalOptions="EndAndExpand"
+                            FontSize="14"
+                            Text="{Binding QotdQuoteeTimeString}"/>
+                        <Label HorizontalOptions="EndAndExpand"
+                            FontSize="14"
+                            Text="{Binding QotdQuoterString}"/>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Frame>
+            <Label Text="Random Quote"
+                Margin="5"
+                Style="{StaticResource LargeLabel}"
+                Grid.Row="2" />
+            <Frame Margin="5"
+                VerticalOptions="Fill"
+                Grid.Row="3">
+                <ScrollView>
+                    <VerticalStackLayout Spacing="5">
+                        <Label FontSize="16"
+                            Text="{Binding RandomQuoteString}"/>
+                        <Label HorizontalOptions="EndAndExpand"
+                            FontSize="14"
+                            Text="{Binding RandomQuoteeTimeString}"/>
+                        <Label HorizontalOptions="EndAndExpand"
+                            FontSize="14"
+                            Text="{Binding RandomQuoterString}"/>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Frame>
+            <Button Text="Get Random Quote"
+                Margin="5"
+                HorizontalOptions="FillAndExpand"
+                Command="{Binding GetRandomQuoteCommand}"
+                Grid.Row="4" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -107,6 +107,9 @@
 	  <MauiXaml Update="View\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\QotdPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\QuotePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

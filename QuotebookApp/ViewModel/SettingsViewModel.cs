@@ -86,39 +86,20 @@ public partial class SettingsViewModel : BaseViewModel
         if (IsBusy)
             return;
 
-        string default_theme = "Device Default";
-        string directory = $"{FileSystem.AppDataDirectory}/";
-        string target = Path.Combine(directory, "AppTheme.txt");
-
-        if (File.Exists(target))
+        try
         {
-            /* First empty the file, then write new theme in */
-            FileStream streamReset = File.OpenWrite(target);
-            streamReset.SetLength(0);
-            streamReset.Close(); // ensures file is wiped
-            FileStream streamWrite = File.OpenWrite(target);
-            StreamWriter writer = new StreamWriter(streamWrite);
-            await writer.WriteAsync(SelectedTheme);
-            writer?.Close();
-            streamWrite?.Close();
-            GlobalData.AppTheme = SelectedTheme;
+            IsBusy = true;
+            SelectedTheme = GlobalData.SetAppTheme(SelectedTheme);
         }
-        else
+        catch (Exception ex)
         {
-            using FileStream stream = File.OpenWrite(target);
-            using StreamWriter writer = new StreamWriter(stream);
-            await writer.WriteAsync(default_theme);
-            GlobalData.AppTheme = default_theme;
-            stream?.Close();
-            writer?.Close();
+            Debug.WriteLine(ex.ToString());
+            await Shell.Current.DisplayAlert("Error!", $"Unable to update App Theme: {ex.Message}", "OK");
         }
-
-        if (GlobalData.AppTheme == "Light")
-            Application.Current.UserAppTheme = AppTheme.Light;
-        else if (GlobalData.AppTheme == "Dark")
-            Application.Current.UserAppTheme = AppTheme.Dark;
-        else
-            Application.Current.UserAppTheme = AppTheme.Unspecified;
+        finally
+        {
+            IsBusy = false;
+        }
     }
 }
 

@@ -23,6 +23,9 @@ public partial class LoginViewModel : BaseViewModel
         IsLoggedIn = GlobalData.IsLoggedIn;
         IsBusy = false;
         this.userService = userService;
+
+        /* Initialize Runtime Data now, this page is opened once immediately at startup */
+        GlobalData.InitializeClientHeight();
     }
 
     [RelayCommand]
@@ -35,6 +38,12 @@ public partial class LoginViewModel : BaseViewModel
     async Task GoToSettingsPageAsync()
     {
         await Shell.Current.GoToAsync(nameof(SettingsPage));
+    }
+
+    [RelayCommand]
+    async Task GoToQOTDPageAsync()
+    {
+        await Shell.Current.GoToAsync(nameof(QotdPage));
     }
 
     [RelayCommand]

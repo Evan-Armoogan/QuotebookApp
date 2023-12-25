@@ -78,6 +78,7 @@
                         HorizontalTextAlignment="Center" 
                         WidthRequest="200"
                         Margin="5"
+                        IsEnabled={Binding IsBusy}
                         SelectedItem="{Binding SelectedTheme}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

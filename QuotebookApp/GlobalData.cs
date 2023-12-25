@@ -8,12 +8,23 @@ public class GlobalData
     public static List<int> RetryStatusCodes { get; private set; }
     public static User CurrentUser { get; set; }
     public static List<User> Users { get; set; }
-    public static string AppTheme { get; set; }
+    public static int ClientHeight { get; private set; }
 
 
     public static bool IsLoggedIn { get; set; } = false;
 
+    private const int client_height_offset = 140;
 
+
+    public static void InitializeClientHeight()
+    {
+#if ANDROID || IOS
+        ClientHeight = Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density - Shell.Current.Height);
+#else
+        ClientHeight = 790;
+#endif
+        ClientHeight -= client_height_offset;
+    }
 
     public async static void InitializeApiParameters()
     {
@@ -38,18 +49,28 @@ public class GlobalData
         RetryStatusCodes = retry_status_codes;
     }
 
-    public static void InitializeAppTheme()
+    private static void resetFile(string filename)
     {
+        FileStream streamReset = File.OpenWrite(filename);
+        streamReset.SetLength(0);
+        streamReset?.Close();
+    }
+
+    private static string initTheme(bool write_theme, string theme="Device Default")
+    {
+        string SetTheme = "Device Default";
+
         string[] themes = { "Light", "Dark", "Device Default" };
         string directory = $"{FileSystem.AppDataDirectory}/";
         string target = Path.Combine(directory, "AppTheme.txt");
 
-        if (File.Exists(target))
+        /* if we want to read the data, we will do so only if the file exists */
+        if (File.Exists(target) && !write_theme)
         {
             FileStream stream = File.OpenRead(target);
             StreamReader reader = new StreamReader(stream);
             string result = reader.ReadToEnd();
-            AppTheme = result;
+            SetTheme = result;
 
             reader?.Close();
             stream?.Close();
@@ -57,32 +78,42 @@ public class GlobalData
             if (!themes.Contains(result))
             {
                 /* Bad data, empty file and rewrite default */
-                FileStream streamReset = File.OpenWrite(target);
-                streamReset.SetLength(0);
-                streamReset.Close(); // ensures file is wiped
-                FileStream streamWrite = File.OpenWrite(target);
-                StreamWriter writerR = new StreamWriter(streamWrite);
-                writerR.Write(themes[2]);
-                writerR?.Close();
-                streamWrite?.Close();
-                AppTheme = themes[2];
+                write_theme = true;
+                theme = "Device Default";
             }
         }
-        else
+
+        /* if data not read or we want to overwrite, write given theme to file */
+        if (write_theme)
         {
-            using FileStream stream = File.OpenWrite(target);
-            using StreamWriter writer = new StreamWriter(stream);
-            writer.Write(themes[2]);
-            AppTheme = themes[2];
+            if (File.Exists(target))
+                resetFile(target);
+
+            FileStream stream = File.OpenWrite(target);
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(theme);
+            SetTheme = theme;
             writer?.Close();
             stream?.Close();
         }
 
-        if (AppTheme == "Light")
+        if (SetTheme == "Light")
             Application.Current.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
-        else if (AppTheme == "Dark")
+        else if (SetTheme == "Dark")
             Application.Current.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Dark;
         else
             Application.Current.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Unspecified;
+
+        return SetTheme;
+    }
+
+    public static void InitializeAppTheme()
+    {
+        initTheme(false);
+    }
+
+    public static string SetAppTheme(string NewTheme)
+    {
+        return initTheme(true, NewTheme);
     }
 }
