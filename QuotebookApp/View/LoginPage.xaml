@@ -55,6 +55,11 @@
                     HorizontalOptions="Center"
                     Margin="3"
                     Command="{Binding GoToQOTDPageCommand}" />
+            <Button Text="Reader"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Margin="3"
+                    Command="{Binding GoToReaderPageCommand}" />
             <Button Text="Settings"
                     WidthRequest="150"
                     HorizontalOptions="Center"

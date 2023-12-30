@@ -1,7 +1,4 @@
-﻿using QuotebookApp.Services;
-using System.Linq;
-
-namespace QuotebookApp.ViewModel;
+﻿namespace QuotebookApp.ViewModel;
 
 public partial class LoginViewModel : BaseViewModel
 {
@@ -25,7 +22,7 @@ public partial class LoginViewModel : BaseViewModel
         this.userService = userService;
 
         /* Initialize Runtime Data now, this page is opened once immediately at startup */
-        GlobalData.InitializeClientHeight();
+        Initialization.InitializeClientHeight();
     }
 
     [RelayCommand]
@@ -44,6 +41,12 @@ public partial class LoginViewModel : BaseViewModel
     async Task GoToQOTDPageAsync()
     {
         await Shell.Current.GoToAsync(nameof(QotdPage));
+    }
+
+    [RelayCommand]
+    async Task GoToReaderPageAsync()
+    {
+        await Shell.Current.GoToAsync(nameof(ReaderPage));
     }
 
     [RelayCommand]

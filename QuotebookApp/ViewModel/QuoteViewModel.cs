@@ -1,11 +1,4 @@
-﻿using QuotebookApp.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuotebookApp.ViewModel;
+﻿namespace QuotebookApp.ViewModel;
 
 public partial class QuoteViewModel : BaseViewModel
 {
@@ -72,7 +65,7 @@ public partial class QuoteViewModel : BaseViewModel
         QuoteDate = DateTime.Today;
     }
 
-    private void setQuoteListProperties()
+    private void setCollectionListProperties()
     {
         TopButtonHeight = 45;
         // this sucks to do, but it's the only way since there is a bug with .NET MAUI CollectionView scrolling
@@ -83,7 +76,6 @@ public partial class QuoteViewModel : BaseViewModel
         FilterFrameHeight = 55;
 #else
         QuoteListHeight = GlobalData.ClientHeight - (TopButtonHeight + 15);
-        //QuoteListHeight = 590;
         QuoteListAlignment = LayoutOptions.Fill;
         FilterFrameSpacing = 20;
         FilterFrameHeight = 70;
@@ -107,7 +99,7 @@ public partial class QuoteViewModel : BaseViewModel
         // clear quotebook
         Quotes.Clear();
 
-        setQuoteListProperties();
+        setCollectionListProperties();
     }
 
     [RelayCommand]

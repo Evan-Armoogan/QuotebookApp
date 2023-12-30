@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
-
-namespace QuotebookApp.Services;
+﻿namespace QuotebookApp.Services;
 
 public class QuoteService
 {
-    BaseService service;
+    BaseSheetService service;
 
     public QuoteService()
     {
-        service = new BaseService();
+        service = new BaseSheetService();
     }
 
 
@@ -78,6 +71,9 @@ public class QuoteService
         string range = "Quotes!A2:D";
 
         SheetData data = await service.GetResponse(range);
+
+        if (data.Values is null)
+            return quoteList;
 
         foreach (string[] value in data.Values)
         {

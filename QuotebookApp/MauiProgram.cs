@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using QuotebookApp.Services;
-using QuotebookApp.View;
 
 namespace QuotebookApp;
 
@@ -24,16 +22,22 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<UserService>();
 		builder.Services.AddSingleton<QuoteService>();
+		builder.Services.AddSingleton<ReaderService>();
+		builder.Services.AddSingleton<BaseDriveService>();
 
 		builder.Services.AddSingleton<LoginViewModel>();
         /* We want this to be transient so the page will load new quotes each time it's opened */
         builder.Services.AddTransient<QuoteViewModel>();
 		builder.Services.AddTransient<QotdViewModel>();
+		builder.Services.AddTransient<ReaderViewModel>();
+		builder.Services.AddTransient<PdfReaderViewModel>();
 		builder.Services.AddTransient<SettingsViewModel>();
 
 		builder.Services.AddSingleton<LoginPage>();
 		builder.Services.AddTransient<QuotePage>();
 		builder.Services.AddTransient<QotdPage>();
+		builder.Services.AddTransient<ReaderPage>();
+		builder.Services.AddTransient<PdfReaderPage>();
 		builder.Services.AddTransient<SettingsPage>();
 
 

@@ -37,14 +37,6 @@ public partial class QotdViewModel : BaseViewModel
         IsBusy = false;
         Title = "Quote of the Day";
         ClientHeight = GlobalData.ClientHeight;
-
-        /* By marking the return value as a discard, we can execute the
-         * asynchronous initialization function in the synchronous constructor.
-         * This should be fine since these asynchronous operations should easily
-         * complete quickly (before the user notices the quotes are missing). If not
-         * (due to some sort of error calling the API), the usual error dialog
-         * will pop up to prompt the user */
-        _ = InitializePage();
     }
 
     [RelayCommand]
@@ -130,7 +122,8 @@ public partial class QotdViewModel : BaseViewModel
         }
     }
 
-    public async Task InitializePage()
+    [RelayCommand]
+    public async Task InitializeQotdPageAsync()
     {
         await GetQotdAsync();
         await GetRandomQuoteAsync();

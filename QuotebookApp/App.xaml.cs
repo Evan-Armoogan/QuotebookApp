@@ -1,20 +1,13 @@
-﻿using QuotebookApp.Services;
-
-namespace QuotebookApp;
+﻿namespace QuotebookApp;
 
 public partial class App : Application
 {
 	public App()
 	{
-        GlobalData.InitializeApiParameters();
-        GlobalData.IniitalizeRetryStatusCodes();
-        GlobalData.InitializeAppTheme();
-
+        Initialization.InitializeAppData();
         InitializeComponent();
 
-        BaseService.InitializeClient();
-
-		MainPage = new AppShell();
+        MainPage = new AppShell();
 	}
 
 #if WINDOWS || MACCATALYST

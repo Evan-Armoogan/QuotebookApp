@@ -65,6 +65,7 @@ public partial class SettingsViewModel : BaseViewModel
         {
             IsBusy = true;
             await userService.SetUserPassword(NewPassword);
+            GlobalData.CurrentUser.UserPass = NewPassword;
             await Shell.Current.DisplayAlert("Success", "Password updated", "OK");
         }
         catch (Exception ex)
@@ -75,7 +76,17 @@ public partial class SettingsViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
-            IsValidPassword = false;
+            /* Update button state appropriately.
+             * There seems to be an issue with setting the button state
+             * via data binding of the button calling the command while
+             * the command is being executed. To fix this I just ran on a
+             * separate thread code to disable the delete button after a slight
+             * delay to ensure this command has completed running by the time the
+             * button is disabled. Really annoying, hopefully it gets fixed soon.
+             * TODO: change this line to IsValidPassword = false when community
+             * toolkit bug is fixed.
+             */
+            _ = Task.Run(() => { Thread.Sleep(1); IsValidPassword = false; });
             ResetPasswordFields();
         }
     }
@@ -89,7 +100,7 @@ public partial class SettingsViewModel : BaseViewModel
         try
         {
             IsBusy = true;
-            SelectedTheme = GlobalData.SetAppTheme(SelectedTheme);
+            SelectedTheme = AppTheme.SetAppTheme(SelectedTheme);
         }
         catch (Exception ex)
         {
