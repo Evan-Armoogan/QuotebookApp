@@ -1,6 +1,7 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using QuotebookApp.Model;
+global using QuotebookApp.Services;
 global using QuotebookApp.ViewModel;
 global using QuotebookApp.View;
 global using System.Collections.ObjectModel;

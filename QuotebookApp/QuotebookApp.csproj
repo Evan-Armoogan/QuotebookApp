@@ -97,9 +97,11 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+		<PackageReference Include="Google.Apis.Drive.v3" Version="1.64.0.3256" />
 		<PackageReference Include="Google.Apis.Sheets.v4" Version="1.62.0.3148" />
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="PDF.js" Version="1.3.91" />
 		<PackageReference Include="System.Linq" Version="4.3.0" />
 	</ItemGroup>
 
@@ -107,10 +109,16 @@
 	  <MauiXaml Update="View\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\PdfReaderPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\QotdPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\QuotePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\ReaderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SettingsPage.xaml">
@@ -121,6 +129,7 @@
 	<ItemGroup>
 	  <Folder Include="Data\" />
 	  <Folder Include="Resources\Images\" />
+	  <Folder Include="Resources\Raw\pdfjs\" />
 	</ItemGroup>
 
 	<ItemGroup>

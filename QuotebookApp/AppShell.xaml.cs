@@ -8,6 +8,8 @@ public partial class AppShell : Shell
 
 		Routing.RegisterRoute(nameof(QuotePage), typeof(QuotePage));
 		Routing.RegisterRoute(nameof(QotdPage), typeof(QotdPage));
+		Routing.RegisterRoute(nameof(ReaderPage), typeof(ReaderPage));
+		Routing.RegisterRoute(nameof(PdfReaderPage), typeof(PdfReaderPage));
 		Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
 	}
 }

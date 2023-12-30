@@ -55,6 +55,7 @@
             <Button Text="Get Random Quote"
                 Margin="5"
                 HorizontalOptions="FillAndExpand"
+                IsEnabled="{Binding IsNotBusy}"
                 Command="{Binding GetRandomQuoteCommand}"
                 Grid.Row="4" />
         </Grid>

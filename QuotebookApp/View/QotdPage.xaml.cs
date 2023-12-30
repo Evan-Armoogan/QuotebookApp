@@ -8,5 +8,6 @@ public partial class QotdPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
-	}
+		viewModel.InitializeQotdPageCommand.Execute(null);
+    }
 }

@@ -1,17 +1,12 @@
-﻿using System.Globalization;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using QuotebookApp.Services;
-
-namespace QuotebookApp.Services;
+﻿namespace QuotebookApp.Services;
 
 public class UserService
 {
-    BaseService service;
+    BaseSheetService service;
 
     public UserService()
     {
-        service = new BaseService();
+        service = new BaseSheetService();
     }
 
     List<User> userList = new List<User>();
