@@ -90,7 +90,10 @@ public partial class QuoteViewModel : BaseViewModel
         this.quoteService = quoteService;
         foreach (User user in GlobalData.Users)
         {
-            Users.Add(user.UserName);
+            /* Don't add invisible users to pickers, point of an invisible
+             * user is that other app users do not see them, but they have access */
+            if (user.UserType != User.UserPermissionType.Invisible)
+                Users.Add(user.UserName);
         }
 
         FilterBtnText = "Filter";
@@ -194,6 +197,12 @@ public partial class QuoteViewModel : BaseViewModel
     {
         if (IsBusy)
             return;
+
+        if (GlobalData.CurrentUser.UserType == User.UserPermissionType.Invisible)
+        {
+            Shell.Current.DisplayAlert("Warning!", "Users with your permission level are not allowed to add quotes. Contact your app administrator.", "OK");
+            return;
+        }
 
         IsAddQuote = true;
     }
