@@ -3,7 +3,7 @@
 public partial class LoginViewModel : BaseViewModel
 {
     UserService userService;
-
+    AppFlagService flagService;
 
     [ObservableProperty]
     string username;
@@ -14,12 +14,13 @@ public partial class LoginViewModel : BaseViewModel
     [ObservableProperty]
     bool loginInvalid;
 
-    public LoginViewModel(UserService userService)
+    public LoginViewModel(UserService userService, AppFlagService flagService)
     {
         Title = "Login";
         IsLoggedIn = GlobalData.IsLoggedIn;
         IsBusy = false;
         this.userService = userService;
+        this.flagService = flagService;
 
         /* Initialize Runtime Data now, this page is opened once immediately at startup */
         Initialization.InitializeClientHeight();
@@ -62,7 +63,7 @@ public partial class LoginViewModel : BaseViewModel
     [RelayCommand]
     async Task LoginAsync()
     {
-        // First, call sheets API to get login data
+        /* First, call sheets API to get login data */
 
         List<User> users = new List<User>();
 
@@ -71,6 +72,15 @@ public partial class LoginViewModel : BaseViewModel
         try
         {
             IsBusy = true;
+
+            bool loginAllowed = await flagService.IsLoginAllowed();
+            if (!loginAllowed)
+            {
+                await Shell.Current.DisplayAlert("Error!", "The app is currently down for maintenance. Try again later.", "OK");
+                IsBusy = false;
+                return;
+            }
+
             users = await userService.GetUsers();
         }
         catch (Exception ex)

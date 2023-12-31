@@ -24,6 +24,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<QuoteService>();
 		builder.Services.AddSingleton<ReaderService>();
 		builder.Services.AddSingleton<BaseDriveService>();
+		builder.Services.AddSingleton<AppFlagService>();
 
 		builder.Services.AddSingleton<LoginViewModel>();
         /* We want this to be transient so the page will load new quotes each time it's opened */
