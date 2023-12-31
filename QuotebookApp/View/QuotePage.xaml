@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:QuotebookApp.Model"
+             xmlns:viewmodel="clr-namespace:QuotebookApp.ViewModel"
              x:Class="QuotebookApp.View.QuotePage"
              Title="{Binding Title}">
     <VerticalStackLayout>
@@ -14,7 +15,7 @@
               RowDefinitions="Auto,Auto,Auto"
               Padding="10"
               RowSpacing="10"
-              IsVisible="{Binding IsNotAddQuote}">
+              IsVisible="{Binding IsNotChangeQuote}">
             <Button Text="{Binding FilterBtnText}"
                     HeightRequest="{Binding TopButtonHeight}"
                     Grid.Row="0"
@@ -44,12 +45,12 @@
                       ColumnSpacing="{Binding FilterFrameSpacing}">
                     <Picker ItemsSource="{Binding Users}"
                             Grid.Column="0"
-                            SelectedIndex="{Binding Quotee1Index}"
+                            SelectedIndex="{Binding FilterQuoteeIndex}"
                             Title="Said By"
                             HorizontalTextAlignment="Center"/>
                     <Picker ItemsSource="{Binding Users}"
                             Grid.Column="1"
-                            SelectedIndex="{Binding QuoterIndex}"
+                            SelectedIndex="{Binding FilterQuoterIndex}"
                             Title="Quoted By"/>
                     <DatePicker Date="{Binding QuoteDate}"
                                 Grid.Column="2"
@@ -72,6 +73,11 @@
                     <DataTemplate x:DataType="model:Quote">
                         <Frame Margin="5"
                                VerticalOptions="Fill">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2"
+                                                      CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:QuoteViewModel}}, Path=QuoteTappedCommand}"/>
+                            </Frame.GestureRecognizers>
                             <VerticalStackLayout Spacing="5">
                                 <Label FontSize="16"
                                            Text="{Binding QuoteString}"/>
@@ -88,11 +94,11 @@
             </CollectionView>
         </Grid>
         <Grid ColumnDefinitions="*,*"
-              RowDefinitions="*,150,*"
+              RowDefinitions="*,Auto,150,*"
               ColumnSpacing="7"
               RowSpacing="10"
               Padding="10"
-              IsVisible="{Binding IsAddQuote}"
+              IsVisible="{Binding IsChangeQuote}"
               VerticalOptions="Center">
             <Picker ItemsSource="{Binding Users}"
                     SelectedIndex="{Binding Quotee1Index}"
@@ -106,22 +112,53 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalOptions="StartAndExpand"/>
+            <Entry Placeholder="Said by"
+                   Text="{Binding Quotee1Other}"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalOptions="EndAndExpand"
+                   WidthRequest="150"
+                   IsEnabled="{Binding Quotee1IsOther}"/>
+            <Entry Placeholder="And by"
+                   Text="{Binding Quotee2Other}"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   HorizontalOptions="StartAndExpand"
+                   WidthRequest="150"
+                   IsEnabled="{Binding Quotee2IsOther}"/>
             <Editor Placeholder="Quote"
                     Text="{Binding NewQuoteString}"
                     AutoSize="TextChanges"
                     HeightRequest="150"
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.ColumnSpan="2"/>
-            <Button Grid.Row="2"
-                    Grid.Column="0"
-                    Text="Back"
-                    IsEnabled="{Binding IsNotBusy}"
-                    Command="{Binding ExitAddQuoteCommand}"/>
-            <Button Grid.Row="2"
-                    Grid.Column="1"
-                    Text="Add Quote"
-                    IsEnabled="{Binding IsNotBusy}"
-                    Command="{Binding AddQuoteCommand}"/>
+            
+            <!-- This grid allows me to include the delete button only when editing a quote
+                 Otherwise, the delete button is not there. Needed this grid to provide enough
+                 columns and to hide the column with the delete button when a quote is being
+                 added normally -->
+            <Grid ColumnDefinitions="{Binding AddQuoteButtonsColumnDefinitions}"
+                  RowDefinitions="Auto"
+                  ColumnSpacing="10"
+                  Grid.Row="3"
+                  Grid.ColumnSpan="2">
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Back"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Command="{Binding ExitAddQuoteCommand}"/>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding AddQuoteButtonText}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Command="{Binding UpdateQuoteCommand}" />
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Text="Delete"
+                        IsVisible="{Binding IsEditDeleteQuote}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Command="{Binding DeleteQuoteCommand}"/>
+            </Grid>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

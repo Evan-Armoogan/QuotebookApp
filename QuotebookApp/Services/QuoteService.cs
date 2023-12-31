@@ -95,9 +95,8 @@ public class QuoteService
         return quote;
     }
 
-    public async Task AddQuote(string quoter, string quotee, string quotestring)
+    private string[] ProcessQuoteForUpload(string quoter, string quotee, string quotestring, DateTime timestamp)
     {
-        DateTime timestamp = DateTime.Now;
         string year = timestamp.Year.ToString();
         string month = string.Format("{0:00}", timestamp.Month.ToString());
         string day = string.Format("{0:00}", timestamp.Day.ToString());
@@ -117,16 +116,50 @@ public class QuoteService
             quotestring = quotestring.Replace("\n", " // ");
         }
 
-
-        string range = "Quotes!A2:D";
         string[] values = new string[4];
-
         values[0] = timestamp_string;
         values[1] = quoter;
         values[2] = quotee;
         values[3] = quotestring;
 
-        await service.SetResponse(range, values);
+        return values;
+    }
+
+    public async Task AddQuote(string quoter, string quotee, string quotestring)
+    {
+        string[] values = ProcessQuoteForUpload(quoter, quotee, quotestring, DateTime.Now);
+        string[][] values_send = new string[1][];
+        values_send[0] = values;
+        string range = "Quotes!A2:D";
+
+        await service.SetResponse(range, values_send);
         return;
+    }
+
+    public async Task EditQuote(string quoter, string quotee, string quotestring, DateTime timestamp, int quoteidx)
+    {
+        string[] values = ProcessQuoteForUpload(quoter, quotee, quotestring, timestamp);
+        string[][] values_send = new string[1][];
+        values_send[0] = values;
+        string range = $"Quotes!A{quoteidx+2}:D{quoteidx+2}";
+
+        await service.EditResponse(range, values_send);
+    }
+
+    public async Task DeleteQuote(int quoteidx)
+    {
+        string range = $"Quotes!A{quoteidx+2+1}:D"; // +2 for sheet index offset, +1 to get quotes after one we delete
+        SheetData data = await service.GetResponse(range);
+        string[] empty_values = { "", "", "", "" };
+        string[][] values_send = new string[data.Values.Length + 1][]; // +1 to add empty row at end
+        int i;
+        for (i = 0; i <  data.Values.Length; i++)
+        {
+            values_send[i] = data.Values[i];
+        }
+        values_send[i] = empty_values;
+
+        range = $"Quotes!A{quoteidx + 2}:D"; // Only +2, we overwrite quote we're deleting with what was after it
+        await service.EditResponse(range, values_send);
     }
 }

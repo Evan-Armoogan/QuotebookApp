@@ -3,6 +3,8 @@
 public partial class QuoteViewModel : BaseViewModel
 {
     QuoteService quoteService;
+    Quote selectedQuote;
+    Predicate<Quote> quoteSearchPredicate;
 
     [ObservableProperty]
     bool filterQuotes;
@@ -11,10 +13,18 @@ public partial class QuoteViewModel : BaseViewModel
     string filterBtnText;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Quotee1IsOther))]
     int quotee1Index;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Quotee2IsOther))]
     int quotee2Index;
+
+    [ObservableProperty]
+    string quotee1Other;
+
+    [ObservableProperty]
+    string quotee2Other;
 
     [ObservableProperty]
     int quoterIndex;
@@ -23,11 +33,22 @@ public partial class QuoteViewModel : BaseViewModel
     DateTime quoteDate;
 
     [ObservableProperty]
+    int filterQuoteeIndex;
+
+    [ObservableProperty]
+    int filterQuoterIndex;
+
+    [ObservableProperty]
     bool filterDate;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsNotAddQuote))]
-    bool isAddQuote;
+    [NotifyPropertyChangedFor(nameof(IsNotChangeQuote))]
+    bool isChangeQuote;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(AddQuoteButtonsColumnDefinitions))]
+    [NotifyPropertyChangedFor(nameof(AddQuoteButtonText))]
+    bool isEditDeleteQuote; // this is used to indicate if the delete button is shown
 
     [ObservableProperty]
     string newQuoteString;
@@ -47,21 +68,27 @@ public partial class QuoteViewModel : BaseViewModel
     [ObservableProperty]
     LayoutOptions quoteListAlignment;
 
-    public bool IsNotAddQuote => !IsAddQuote;
+    public bool IsNotChangeQuote => !IsChangeQuote;
+
+    public bool Quotee1IsOther => Quotee1Index == Users.Count() - 1;
+    public bool Quotee2IsOther => Quotee2Index == Users.Count() - 1;
+
+    public string AddQuoteButtonText => IsEditDeleteQuote ? "Update" : "Add";
+    public ColumnDefinitionCollection AddQuoteButtonsColumnDefinitions => IsEditDeleteQuote ?
+        (new ColumnDefinitionCollection { new ColumnDefinition(), new ColumnDefinition(), new ColumnDefinition() }) :
+        (new ColumnDefinitionCollection { new ColumnDefinition(), new ColumnDefinition() });
 
     public ObservableCollection<string> Users { get; } = new ObservableCollection<string>();
 
     public ObservableCollection<Quote> Quotes { get; } = new ObservableCollection<Quote>();
-
 
     // private declarations
     private List<Quote> allQuotes;
 
     private void resetFilterOptions()
     {
-        Quotee1Index = -1;
-        Quotee2Index = -1;
-        QuoterIndex = -1;
+        FilterQuoteeIndex = -1;
+        FilterQuoterIndex = -1;
         QuoteDate = DateTime.Today;
     }
 
@@ -82,6 +109,14 @@ public partial class QuoteViewModel : BaseViewModel
 #endif
     }
 
+    private void initializeQuoteSearchPredicate()
+    {
+        quoteSearchPredicate = new Predicate<Quote>(q => (q.Quotee == selectedQuote.Quotee &&
+                                                          q.Quoter == selectedQuote.Quoter &&
+                                                          q.QuoteString == selectedQuote.QuoteString &&
+                                                          AreDatesEqual(q.Timestamp, selectedQuote.Timestamp)));
+    }
+
 
     public QuoteViewModel(QuoteService quoteService)
     {
@@ -95,13 +130,18 @@ public partial class QuoteViewModel : BaseViewModel
             if (user.UserType != User.UserPermissionType.Invisible)
                 Users.Add(user.UserName);
         }
+        Users.Add("Other");
 
         FilterBtnText = "Filter";
-        IsAddQuote = false;
+        IsChangeQuote = false;
+
+        Quotee1Index = -1;
+        Quotee2Index = -1;
 
         // clear quotebook
         Quotes.Clear();
 
+        initializeQuoteSearchPredicate();
         setCollectionListProperties();
     }
 
@@ -120,10 +160,12 @@ public partial class QuoteViewModel : BaseViewModel
 
             if (Quotes.Count != 0)
                 Quotes.Clear();
-            
+
+            allQuotes = new List<Quote>();
             foreach (Quote quote in quotes)
             {
                 Quotes.Add(quote);
+                allQuotes.Add(quote);
             }
         }
         catch (Exception ex)
@@ -137,8 +179,65 @@ public partial class QuoteViewModel : BaseViewModel
         }
     }
 
-    [RelayCommand]
-    async Task AddQuoteAsync()
+    private string ProcessQuoteeStringForUpload()
+    {
+        string quotee1 = "";
+        if (Quotee1IsOther)
+            quotee1 = Quotee1Other;
+        else
+            quotee1 = Users[Quotee1Index];
+
+        string quotee2 = "";
+        if (Quotee2Index != -1) // Only process quotee2 if one has been set
+        {
+            if (Quotee2IsOther)
+                quotee2 = Quotee2Other;
+            else
+                quotee2 = Users[Quotee2Index];
+        }
+
+        string quotee = Quotee2Index == -1 ? quotee1 : $"{quotee1}, {quotee2}";
+
+        return quotee;
+    }
+
+    private Quote ProcessQuoteStringForDisplay(DateTime timestamp, string quoter, string quotee, string quotestring)
+    {
+        string quotee_display = quotee.Replace(", ", " & ");
+        Quote new_quote = new Quote(timestamp, quoter, quotee_display, quotestring);
+        new_quote.CreateTimestampString();
+        new_quote.CreateQuoteeTimeString();
+        new_quote.CreateQuoterString();
+        return new_quote;
+    }
+
+    private void exitAndResetAddQuotePage()
+    {
+        IsChangeQuote = false;
+        NewQuoteString = "";
+        Quotee1Index = -1;
+        Quotee2Index = -1;
+        Quotee1Other = "";
+        Quotee2Other = "";
+    }
+
+    private void checkQuoteeValidity()
+    {
+        if (Quotee1Index == -1)
+        {
+            /* Quotee was not sent, we should throw an exception */
+            throw new Exception("'Said By' parameter was not set.");
+        }
+
+        if ((Quotee1IsOther && (Quotee1Other == "" || Quotee1Other is null)) || 
+            (Quotee2IsOther && (Quotee2Other == "" || Quotee2Other is null)))
+        {
+            /* One of the quotees is blank (and can't be) */
+            throw new Exception("'Said By' and 'And By' parameters may not be left blank");
+        }
+    }
+
+    private async Task addQuoteAsync()
     {
         if (IsBusy)
             return;
@@ -147,23 +246,16 @@ public partial class QuoteViewModel : BaseViewModel
         {
             IsBusy = true;
 
-            if (Quotee1Index == -1)
-            {
-                // Quotee was not sent, we should throw an exception
-                throw new Exception("'Said By' parameter was not set.");
-            }
+            checkQuoteeValidity();
 
-            string quotee = Quotee2Index == -1 ? Users[Quotee1Index] : $"{Users[Quotee1Index]}, {Users[Quotee2Index]}";
+            string quotee = ProcessQuoteeStringForUpload();
+
             await quoteService.AddQuote(GlobalData.CurrentUser.UserName, quotee, NewQuoteString);
 
-            await Shell.Current.DisplayAlert("Success", "Quote added to quotebook", "OK");
+            Quote new_quote = ProcessQuoteStringForDisplay(DateTime.Now, GlobalData.CurrentUser.UserName, quotee, NewQuoteString);
+            allQuotes.Add(new_quote);
 
-            string quotee_display = Quotee2Index == -1 ? Users[Quotee1Index] : $"{Users[Quotee1Index]} & {Users[Quotee2Index]}";
-            Quote new_quote = new Quote(DateTime.Now, GlobalData.CurrentUser.UserName, quotee_display, NewQuoteString);
-            new_quote.CreateTimestampString();
-            new_quote.CreateQuoteeTimeString();
-            new_quote.CreateQuoterString();
-            Quotes.Add(new_quote);
+            await Shell.Current.DisplayAlert("Success", "Quote added to quotebook", "OK");
         }
         catch (Exception ex)
         {
@@ -173,10 +265,95 @@ public partial class QuoteViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
-            IsAddQuote = false;
-            NewQuoteString = "";
-            Quotee1Index = -1;
-            Quotee2Index = -1;
+            /* Need to refilter the quotes in case the added quote matches the filter description */
+            FilterQuotesList();
+            exitAndResetAddQuotePage();
+        }
+    }
+
+    private async Task editQuoteAsync()
+    {
+        if (IsBusy)
+            return;
+
+        bool answer = await Shell.Current.DisplayAlert("Confirmation", "Are you sure you want to edit this quote?", "Yes", "No");
+        if (!answer)
+            return;
+
+        try
+        {
+            IsBusy = true;
+
+            checkQuoteeValidity();
+
+            string quotee = ProcessQuoteeStringForUpload();
+
+            /* Define two quotes as equal when the quoter, quotee, quote are the same and the dates are equal */
+            int all_quote_idx = allQuotes.FindIndex(quoteSearchPredicate);
+            int quote_idx = Quotes.ToList().FindIndex(quoteSearchPredicate);
+
+            await quoteService.EditQuote(selectedQuote.Quoter, quotee, NewQuoteString, selectedQuote.Timestamp, all_quote_idx);
+
+            Quote new_quote = ProcessQuoteStringForDisplay(selectedQuote.Timestamp, selectedQuote.Quoter, quotee, NewQuoteString);
+            allQuotes[all_quote_idx] = new_quote;
+            Quotes[quote_idx] = new_quote;
+
+            await Shell.Current.DisplayAlert("Success", "Quote edited successfully", "OK");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.ToString());
+            await Shell.Current.DisplayAlert("Error!", $"Unable to edit the requested quote: {ex.Message}", "OK");
+        }
+        finally
+        {
+            IsBusy = false;
+            exitAndResetAddQuotePage();
+        }
+    }
+
+    [RelayCommand]
+    async Task UpdateQuoteAsync()
+    {
+        if (!IsEditDeleteQuote)
+            await addQuoteAsync();
+        else
+            await editQuoteAsync();
+    }
+
+    [RelayCommand]
+    async Task DeleteQuoteAsync()
+    {
+        if (IsBusy)
+            return;
+
+        bool answer = await Shell.Current.DisplayAlert("Confirmation", "Are you sure you want to delete this quote?", "Yes", "No");
+        if (!answer)
+            return;
+
+        try
+        {
+            IsBusy = true;
+
+            int quote_idx = allQuotes.FindIndex(quoteSearchPredicate);
+            await quoteService.DeleteQuote(quote_idx);
+
+            Quote remove_quote = allQuotes[quote_idx];
+            allQuotes.Remove(remove_quote);
+
+            await Shell.Current.DisplayAlert("Success!", "Quote successfully deleted.", "OK");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.ToString());
+            await Shell.Current.DisplayAlert("Error!", $"Unable to delete the requested quote: {ex.Message}", "OK");
+        }
+        finally
+        {
+            IsBusy = false;
+            /* Need to refilter the quotes in case the deleted quote matched the filter description */
+            FilterQuotesList();
+            exitAndResetAddQuotePage();
         }
     }
 
@@ -186,10 +363,7 @@ public partial class QuoteViewModel : BaseViewModel
         if (IsBusy)
             return;
 
-        IsAddQuote = false;
-        NewQuoteString = "";
-        Quotee1Index = -1;
-        Quotee2Index = -1;
+        exitAndResetAddQuotePage();
     }
 
     [RelayCommand]
@@ -204,7 +378,8 @@ public partial class QuoteViewModel : BaseViewModel
             return;
         }
 
-        IsAddQuote = true;
+        IsEditDeleteQuote = false;
+        IsChangeQuote = true;
     }
 
     [RelayCommand]
@@ -263,13 +438,13 @@ public partial class QuoteViewModel : BaseViewModel
 
         string Quotee;
         string Quoter;
-        if (Quotee1Index != -1)
-            Quotee = GlobalData.Users[Quotee1Index].UserName;
+        if (FilterQuoteeIndex != -1)
+            Quotee = GlobalData.Users[FilterQuoteeIndex].UserName;
         else
             Quotee = "";
 
-        if (QuoterIndex != -1)
-            Quoter = GlobalData.Users[QuoterIndex].UserName;
+        if (FilterQuoterIndex != -1)
+            Quoter = GlobalData.Users[FilterQuoterIndex].UserName;
         else
             Quoter = "";
 
@@ -293,5 +468,79 @@ public partial class QuoteViewModel : BaseViewModel
         {
             Quotes.Add(quote);
         }
+    }
+
+    [RelayCommand]
+    void QuoteTapped(Quote quote)
+    {
+        /* Invisible users are not allowed to edit quotes */
+        if (GlobalData.CurrentUser.UserType == User.UserPermissionType.Invisible)
+        {
+            Shell.Current.DisplayAlert("Warning!", "Users with your permission level are not allowed to edit or delete quotes. Contact your app administrator.", "OK");
+            return;
+        }
+
+        /* Check if the user is allowed to edit/delete the quote */
+        string[] quotees = quote.Quotee.Split(" & ");
+        string quoter = quote.Quoter;
+        string username = GlobalData.CurrentUser.UserName;
+
+        /* Only allowed to edit quotes if you are quoted in them or if you quoted them */
+        bool canEditQuote = false;
+        foreach (string quotee in quotees)
+        {
+            if (quotee == username)
+                canEditQuote = true;
+        }
+        if (quoter == username)
+            canEditQuote = true;
+
+        /* Admins can edit/delete all quotes */
+        if (GlobalData.CurrentUser.UserType == User.UserPermissionType.Admin)
+            canEditQuote = true;
+
+        if (!canEditQuote)
+        {
+            Shell.Current.DisplayAlert("Warning!", "You may only edit and delete quotes that you quoted or are quoted in.", "OK");
+            return;
+        }
+
+        /* User is allowed to edit quote, start processing it */
+        selectedQuote = quote;
+
+        /* Fill in quote, said by boxes with the quote info */
+        NewQuoteString = quote.QuoteString;
+
+        List<int> quoteeIndex = new List<int>();
+        foreach (string quotee in quotees)
+        {
+            int idx = 0;
+            foreach (string user in Users)
+            {
+                /* Add the index if the quotee is a valid user, or if quotee is "Other"  */
+                if (user == quotee || idx == Users.Count() - 1)
+                {
+                    quoteeIndex.Add(idx);
+                    break;
+                }
+                idx++;
+            }
+        }
+
+        Quotee1Index = -1;
+        Quotee2Index = -1;
+        if (quoteeIndex.Count > 0)
+            Quotee1Index = quoteeIndex[0];
+        if (quoteeIndex.Count > 1)
+            Quotee2Index = quoteeIndex[1];
+
+        if (Quotee1IsOther)
+            Quotee1Other = quotees[0];
+        if (Quotee2IsOther)
+            Quotee2Other = quotees[1];
+
+        /* Set up the edit/delete/add quote controls and make them visible */
+        IsEditDeleteQuote = true;
+        IsChangeQuote = true;
     }
 }

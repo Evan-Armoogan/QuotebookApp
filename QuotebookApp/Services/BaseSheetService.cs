@@ -8,6 +8,13 @@ namespace QuotebookApp.Services;
 
 class UploadValues
 {
+    public UploadValues(string range, string majorDimension, string[][] values)
+    {
+        this.range = range;
+        this.majorDimension = majorDimension;
+        this.values = values;
+    }
+
     public string range { get; set; }
     public string majorDimension { get; set; }
     public string[][] values { get; set; }
@@ -48,17 +55,6 @@ public class BaseSheetService
         }
     }
 
-    private UploadValues ConstructUploadObject(string range, string major_dimension, string[] value_array)
-    {
-        UploadValues vals = new UploadValues();
-        vals.range = range;
-        vals.majorDimension = major_dimension;
-        string[][] values = new string[value_array.Length][];
-        values[0] = value_array;
-        vals.values = values;
-        return vals;
-    }
-
 
     public async Task<SheetData> GetResponse(string range)
     {
@@ -93,7 +89,7 @@ public class BaseSheetService
         }
     }
 
-    public async Task SetResponse(string range, string[] value_array)
+    public async Task SetResponse(string range, string[][] value_array)
     {
         string base_url = GlobalData.BaseURL;
         string spreadsheet_id = GlobalData.SheetID;
@@ -103,7 +99,7 @@ public class BaseSheetService
 
         var url = $"{base_url}/{spreadsheet_id}/values/{range}:append?valueInputOption={value_input_option}&insertDataOption={insert_data_option}";
 
-        UploadValues vals = ConstructUploadObject(range, major_dimension, value_array);
+        UploadValues vals = new UploadValues(range, major_dimension, value_array);
 
         JsonContent json_content = JsonContent.Create<UploadValues>(vals);
         HttpContent content = (HttpContent)json_content;
@@ -139,7 +135,7 @@ public class BaseSheetService
         }
     }
 
-    public async Task EditResponse(string range, string[] value_array)
+    public async Task EditResponse(string range, string[][] value_array)
     {
         string base_url = GlobalData.BaseURL;
         string spreadsheet_id = GlobalData.SheetID;
@@ -148,7 +144,7 @@ public class BaseSheetService
 
         var url = $"{base_url}/{spreadsheet_id}/values/{range}?valueInputOption={value_input_option}";
 
-        UploadValues vals = ConstructUploadObject(range, major_dimension, value_array);
+        UploadValues vals = new UploadValues(range, major_dimension, value_array);
 
         JsonContent json_content = JsonContent.Create<UploadValues>(vals);
         HttpContent content = (HttpContent)json_content;
