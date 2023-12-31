@@ -53,12 +53,13 @@ public class UserService
 
     public async Task SetUserPassword(string password)
     {
-        int user_id = GlobalData.CurrentUser.UserID;
-        int sheet_row = user_id + 1;
-        string range = $"Users!C{sheet_row}";
+        int user = GlobalData.Users.FindIndex(u => (u.UserID == GlobalData.CurrentUser.UserID));
+        string range = $"Users!C{user+2}";
 
         string[] values = { password };
+        string[][] values_send = new string[1][];
+        values_send[0] = values;
 
-        await service.EditResponse(range, values);
+        await service.EditResponse(range, values_send);
     }
 }
