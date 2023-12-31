@@ -41,7 +41,7 @@ public partial class SettingsViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public void CheckPasswordValidity()
+    void CheckPasswordValidity()
     {
         if ((Password == GlobalData.CurrentUser.UserPass) && (NewPassword == ConfirmPassword) && (NewPassword.Length >= 4))
             IsValidPassword = true;
@@ -52,7 +52,7 @@ public partial class SettingsViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public async Task UpdatePasswordAsync()
+    async Task UpdatePasswordAsync()
     {
         if (IsBusy)
             return;
@@ -92,7 +92,7 @@ public partial class SettingsViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public async Task UpdateThemeAsync()
+    async Task UpdateThemeAsync()
     {
         if (IsBusy)
             return;
@@ -111,6 +111,12 @@ public partial class SettingsViewModel : BaseViewModel
         {
             IsBusy = false;
         }
+    }
+
+    [RelayCommand]
+    async Task GoToChangelogPageAsync()
+    {
+        await Shell.Current.GoToAsync(nameof(ChangelogPage));
     }
 }
 

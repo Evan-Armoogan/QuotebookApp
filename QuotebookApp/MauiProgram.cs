@@ -32,6 +32,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<ReaderViewModel>();
 		builder.Services.AddTransient<PdfReaderViewModel>();
 		builder.Services.AddTransient<SettingsViewModel>();
+		builder.Services.AddTransient<ChangelogViewModel>();
 
 		builder.Services.AddSingleton<LoginPage>();
 		builder.Services.AddTransient<QuotePage>();
@@ -39,6 +40,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<ReaderPage>();
 		builder.Services.AddTransient<PdfReaderPage>();
 		builder.Services.AddTransient<SettingsPage>();
+		builder.Services.AddTransient<ChangelogPage>();
 
 
 
