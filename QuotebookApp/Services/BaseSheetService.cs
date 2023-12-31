@@ -148,7 +148,6 @@ public class BaseSheetService
 
         JsonContent json_content = JsonContent.Create<UploadValues>(vals);
         HttpContent content = (HttpContent)json_content;
-        Debug.WriteLine(content);
         var uri = new Uri(url);
 
         int retries = 0;
