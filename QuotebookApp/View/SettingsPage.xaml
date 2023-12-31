@@ -96,5 +96,9 @@
             </VerticalStackLayout>
         </Frame>
         -->
+        <Button Text="Changelog"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="200"
+                Command="{Binding GoToChangelogPageCommand}" />
     </VerticalStackLayout>
 </ContentPage>

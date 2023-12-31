@@ -11,5 +11,6 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(ReaderPage), typeof(ReaderPage));
 		Routing.RegisterRoute(nameof(PdfReaderPage), typeof(PdfReaderPage));
 		Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+		Routing.RegisterRoute(nameof(ChangelogPage), typeof(ChangelogPage));
 	}
 }
