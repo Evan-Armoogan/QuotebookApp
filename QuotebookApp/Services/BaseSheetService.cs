@@ -31,7 +31,7 @@ public class BaseSheetService
         service = await BaseService.InitializeService<SheetsService>(scopes);
     }
 
-    private void retry(int retries)
+    private void retry(ref int retries)
     {
         switch (retries)
         {
@@ -53,131 +53,89 @@ public class BaseSheetService
             default:
                 throw new Exception($"API request timed out. Try again later.");
         }
+        retries++;
     }
 
+    private async Task apiRequest(Func<Task<HttpResponseMessage>> callFn, Func<HttpResponseMessage, Task> successHandling)
+    {
+        int retries = 0;
+        while (true)
+        {
+            using HttpResponseMessage response = await callFn();
+            if (response.IsSuccessStatusCode)
+            {
+                await successHandling(response);
+                break;
+            }
+
+            else if (GlobalData.RetryStatusCodes.Contains(Convert.ToInt32(response.StatusCode)))
+            {
+                /* valid retry request. Times based on Google Sheets API Quota Limits
+                 * should improve this, just want working code for now */
+                retry(ref retries);
+            }
+
+            else
+            {
+                throw new Exception($"API request failed due to unsuccessful response code: {response.StatusCode}");
+            }
+        }
+    }
 
     public async Task<SheetData> GetResponse(string range)
     {
         string base_url = GlobalData.BaseURL;
         string spreadsheet_id = GlobalData.SheetID;
         string major_dimension = "ROWS";
-        
+
         var url = $"{base_url}/{spreadsheet_id}/values/{range}?majorDimension={major_dimension}";
 
-        int retries = 0;
-        while (true)
+        SheetData data = new SheetData();
+        await apiRequest(async () => await service.HttpClient.GetAsync(url), async (HttpResponseMessage response) => data = await response.Content.ReadAsAsync<SheetData>());
+
+        return data;
+    }
+
+    private async Task setEditRequest(Func<Uri, HttpContent, Task<HttpResponseMessage>> callFn, string url, string range, string[][] value_array)
+    {
+        string major_dimension = "ROWS";
+        UploadValues vals = new UploadValues(range, major_dimension, value_array);
+
+        JsonContent json_content = JsonContent.Create<UploadValues>(vals);
+        HttpContent content = (HttpContent)json_content;
+        Uri uri = new Uri(url);
+
+        await apiRequest(async() => await callFn(uri, content), async (HttpResponseMessage response) =>
         {
-            using HttpResponseMessage response = await service.HttpClient.GetAsync(url);
-            if (response.IsSuccessStatusCode)
+            PostSheetData data = await response.Content.ReadAsAsync<PostSheetData>();
+            if (data.spreadsheetID != GlobalData.SheetID)
             {
-                SheetData data = await response.Content.ReadAsAsync<SheetData>();
-                return data;
+                // request unsuccessful, invalid response
+                throw new Exception("Update unsuccessful: invalid API response. Please try again.");
             }
-
-            else if (GlobalData.RetryStatusCodes.Contains(Convert.ToInt32(response.StatusCode)))
-            {
-                // valid retry request. Times based on Google Sheets API Quota Limits
-                // should improve this, just want working code for now
-                retry(retries);
-                retries++;
-            }
-
-            else
-            {
-                throw new Exception($"API request failed due to unsuccessful response code: {response.StatusCode}");
-            }
-        }
+        });
     }
 
     public async Task SetResponse(string range, string[][] value_array)
     {
         string base_url = GlobalData.BaseURL;
         string spreadsheet_id = GlobalData.SheetID;
-        string major_dimension = "ROWS";
         string value_input_option = "USER_ENTERED";
         string insert_data_option = "INSERT_ROWS";
 
         var url = $"{base_url}/{spreadsheet_id}/values/{range}:append?valueInputOption={value_input_option}&insertDataOption={insert_data_option}";
 
-        UploadValues vals = new UploadValues(range, major_dimension, value_array);
-
-        JsonContent json_content = JsonContent.Create<UploadValues>(vals);
-        HttpContent content = (HttpContent)json_content;
-        var uri = new Uri(url);
-
-        int retries = 0;
-        while (true)
-        {
-            using HttpResponseMessage response = await service.HttpClient.PostAsync(uri, content);
-            if (response.IsSuccessStatusCode)
-            {
-                PostSheetData data = await response.Content.ReadAsAsync<PostSheetData>();
-                if (data.spreadsheetID != spreadsheet_id)
-                {
-                    // request unsuccessful, invalid response
-                    throw new Exception("Update unsuccessful: invalid API response. Please try again.");
-                }
-
-                return;
-            }
-
-            else if (GlobalData.RetryStatusCodes.Contains(Convert.ToInt32(response.StatusCode)))
-            {
-                // valid retry request. Times based on Google Sheets API Quota Limits
-                retry(retries);
-                retries++;
-            }
-
-            else
-            {
-                throw new Exception($"API request failed due to unsuccessful response code: {response.StatusCode}");
-            }
-        }
+        await setEditRequest(service.HttpClient.PostAsync, url, range, value_array);
     }
 
     public async Task EditResponse(string range, string[][] value_array)
     {
         string base_url = GlobalData.BaseURL;
         string spreadsheet_id = GlobalData.SheetID;
-        string major_dimension = "ROWS";
         string value_input_option = "USER_ENTERED";
 
         var url = $"{base_url}/{spreadsheet_id}/values/{range}?valueInputOption={value_input_option}";
 
-        UploadValues vals = new UploadValues(range, major_dimension, value_array);
-
-        JsonContent json_content = JsonContent.Create<UploadValues>(vals);
-        HttpContent content = (HttpContent)json_content;
-        var uri = new Uri(url);
-
-        int retries = 0;
-        while (true)
-        {
-            using HttpResponseMessage response = await service.HttpClient.PutAsync(uri, content);
-            if (response.IsSuccessStatusCode)
-            {
-                PostSheetData data = await response.Content.ReadAsAsync<PostSheetData>();
-                if (data.spreadsheetID != spreadsheet_id)
-                {
-                    // request unsuccessful, invalid response
-                    throw new Exception("Update unsuccessful: invalid API response. Please try again.");
-                }
-
-                return;
-            }
-
-            else if (GlobalData.RetryStatusCodes.Contains(Convert.ToInt32(response.StatusCode)))
-            {
-                // valid retry request. Times based on Google Sheets API Quota Limits
-                retry(retries);
-                retries++;
-            }
-
-            else
-            {
-                throw new Exception($"API request failed due to unsuccessful response code: {response.StatusCode}");
-            }
-        }
+        await setEditRequest(service.HttpClient.PutAsync, url, range, value_array);
     }
 }
-

@@ -151,13 +151,23 @@ public class QuoteService
         string range = $"Quotes!A{quoteidx+2+1}:D"; // +2 for sheet index offset, +1 to get quotes after one we delete
         SheetData data = await service.GetResponse(range);
         string[] empty_values = { "", "", "", "" };
-        string[][] values_send = new string[data.Values.Length + 1][]; // +1 to add empty row at end
-        int i;
-        for (i = 0; i <  data.Values.Length; i++)
+        string[][] values_send;
+        if (data.Values is null)
         {
-            values_send[i] = data.Values[i];
+            /* The quote to delete is the last quote */
+            values_send = new string[1][];
+            values_send[0] = empty_values;
         }
-        values_send[i] = empty_values;
+        else
+        {
+            values_send = new string[data.Values.Length + 1][]; // +1 to add empty row at end
+            int i;
+            for (i = 0; i < data.Values.Length; i++)
+            {
+                values_send[i] = data.Values[i];
+            }
+            values_send[i] = empty_values;
+        }
 
         range = $"Quotes!A{quoteidx + 2}:D"; // Only +2, we overwrite quote we're deleting with what was after it
         await service.EditResponse(range, values_send);
