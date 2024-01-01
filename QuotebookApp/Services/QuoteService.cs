@@ -89,6 +89,12 @@ public class QuoteService
         string range = "QOTD!A2:D2";
         SheetData data = await service.GetResponse(range);
 
+        if (data.Values is null)
+        {
+            Quote no_quote = new Quote(DateTime.Now, "", "", "No Quote of the Day set");
+            return no_quote;
+        }
+
         string[] result = data.Values[0];
 
         Quote quote = processNewQuote(result);
