@@ -19,6 +19,10 @@ public class AppFlagService
         if (data.Values[0][0] != "Y")
             return true;
 
+        /* Admins can always access the app */
+        if (GlobalData.CurrentUser.UserType == User.UserPermissionType.Admin)
+            return true;
+
         return false;
     }
 }

@@ -158,6 +158,9 @@ public partial class QuoteViewModel : BaseViewModel
             IsBusy = true;
             List<Quote> quotes = await quoteService.GetQuotes();
 
+            /* Reverse the list of quotes so most recent quotes appear first */
+            quotes.Reverse();
+
             if (Quotes.Count != 0)
                 Quotes.Clear();
 
@@ -253,7 +256,7 @@ public partial class QuoteViewModel : BaseViewModel
             await quoteService.AddQuote(GlobalData.CurrentUser.UserName, quotee, NewQuoteString);
 
             Quote new_quote = ProcessQuoteStringForDisplay(DateTime.Now, GlobalData.CurrentUser.UserName, quotee, NewQuoteString);
-            allQuotes.Add(new_quote);
+            allQuotes.Insert(0, new_quote);
 
             await Shell.Current.DisplayAlert("Success", "Quote added to quotebook", "OK");
         }
@@ -291,8 +294,9 @@ public partial class QuoteViewModel : BaseViewModel
             /* Define two quotes as equal when the quoter, quotee, quote are the same and the dates are equal */
             int all_quote_idx = allQuotes.FindIndex(quoteSearchPredicate);
             int quote_idx = Quotes.ToList().FindIndex(quoteSearchPredicate);
+            int sheet_idx = allQuotes.Count() - all_quote_idx - 1; // because allQuotes is in reverse order of spreadsheet
 
-            await quoteService.EditQuote(selectedQuote.Quoter, quotee, NewQuoteString, selectedQuote.Timestamp, all_quote_idx);
+            await quoteService.EditQuote(selectedQuote.Quoter, quotee, NewQuoteString, selectedQuote.Timestamp, sheet_idx);
 
             Quote new_quote = ProcessQuoteStringForDisplay(selectedQuote.Timestamp, selectedQuote.Quoter, quotee, NewQuoteString);
             allQuotes[all_quote_idx] = new_quote;
@@ -336,7 +340,8 @@ public partial class QuoteViewModel : BaseViewModel
             IsBusy = true;
 
             int quote_idx = allQuotes.FindIndex(quoteSearchPredicate);
-            await quoteService.DeleteQuote(quote_idx);
+            int sheet_idx = allQuotes.Count() - quote_idx - 1; // because allQuotes is in reverse order of spreadsheet
+            await quoteService.DeleteQuote(sheet_idx);
 
             Quote remove_quote = allQuotes[quote_idx];
             allQuotes.Remove(remove_quote);

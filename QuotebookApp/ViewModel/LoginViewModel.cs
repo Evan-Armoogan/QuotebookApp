@@ -73,14 +73,6 @@ public partial class LoginViewModel : BaseViewModel
         {
             IsBusy = true;
 
-            bool loginAllowed = await flagService.IsLoginAllowed();
-            if (!loginAllowed)
-            {
-                await Shell.Current.DisplayAlert("Error!", "The app is currently down for maintenance. Try again later.", "OK");
-                IsBusy = false;
-                return;
-            }
-
             users = await userService.GetUsers();
         }
         catch (Exception ex)
@@ -93,8 +85,21 @@ public partial class LoginViewModel : BaseViewModel
         {
             if (user.UserName == Username && user.UserPass == Password)
             {
-                // logged in
+                /* Good login details */
                 GlobalData.CurrentUser = user;
+
+                /* Check if the user is allowed to log in (i.e. app is not down) */
+                bool loginAllowed = await flagService.IsLoginAllowed();
+                if (!loginAllowed)
+                {
+                    await Shell.Current.DisplayAlert("Error!", "The app is currently down for maintenance. Try again later.", "OK");
+                    GlobalData.CurrentUser = null;
+                    Password = "";
+                    IsBusy = false;
+                    return;
+                }
+
+                /* All good, process user details and set up home page */
                 GlobalData.IsLoggedIn = true;
                 IsLoggedIn = true;
                 LoginInvalid = false;
